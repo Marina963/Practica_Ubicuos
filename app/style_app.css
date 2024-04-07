@@ -1,0 +1,53 @@
+body {
+    padding: 0;
+    margin: 0;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+html,body {
+    height: 100vh;
+    width:  100vw;
+
+}
+header{
+    top:0;
+    left: 0;
+    height: 8vh;
+    width: 100vw;
+    position: absolute;
+    background-color: chocolate;
+}
+.pag_principal{
+    position: absolute;
+    top: 8vh;
+    left: 0;
+    height: 84vh;
+    width: 100vw;
+}
+
+footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 8vh;
+    width: 100vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    background-color: brown;
+}
+
+#armario{
+    background-color: aquamarine;
+}
+#esc_ropa{
+    background-color: rgb(72, 61, 83);
+}
+#maniqui{
+    background-color: rgb(194, 42, 39);
+}
+#favoritos{
+    background-color: rgb(244, 127, 255);
+}
+#ubicacion{
+    background-color: rgb(132, 93, 93);
+}
