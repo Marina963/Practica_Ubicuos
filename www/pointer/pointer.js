@@ -1,10 +1,11 @@
 const socket = io();
 
+console.log("antes del if\n");
 if ('AbsoluteOrientationSensor' in window) {
+  console.log("despues del if\n");
   try {
     const sensor = new AbsoluteOrientationSensor({ frequency: 60 });
     socket.on("connect", () => {
-      
       const h = document.querySelector("body");
       h.style.backgroundColor = "blue"; 
       socket.emit("POINTER_CONNECTED");

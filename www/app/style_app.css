@@ -39,6 +39,30 @@ footer {
 #armario{ 
     background-color: aquamarine;
 }
+
+#carrito {
+    position: fixed;
+    top: 10vh;
+    width: 100vw;
+    height: 75vh;
+    overflow-y: auto;
+  }
+  
+.prod_carrito {
+    width: 85%; 
+    height: auto;
+    position: relative;
+    background-color: #ecd0f7;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 4% 5%;
+    margin-bottom: 2vh;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 20px;
+    color: #333;
+}
+
+
 #esc_ropa{
     background-color: rgb(72, 61, 83);
 }

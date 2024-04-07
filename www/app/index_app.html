@@ -2,6 +2,7 @@
 <html>
 
 <head>
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <meta name="author" content="Marina Pérez Barbero, Irene Subías Serrano, Paula Subías Serrano">
@@ -22,9 +23,14 @@
     </div>
     <div id="armario" class="pag_principal">
         <p>armario</p>
+        <div id="carrito">
+        </div>
     </div>
     <div id="esc_ropa" class="pag_principal">
-        <p>esc_ropa</p>
+        <p>Escanear Ropa</p>
+        <video id="video" width="100%" autoplay></video>
+        <canvas id="canvas" style="display:none;"></canvas>
+        <div id="resultado"></div>
     </div>
     <div id="ubicacion" class="pag_principal">
         <p>ubicacion</p>
@@ -41,13 +47,14 @@
             <p>Armario</p>
         </div>
         <div id="footer_esc_ropa">
-            <p>Escanear Ropa</p>
+            <p>esc_ropa</p>
         </div>
         <div id="footer_ubicacion">
             <p> Ubicacion</p>
         </div>
     </footer>
     <script src="script_app.js"> </script>
+    <script src="script_cap_qr.js"> </script>
 </body>
 
 </html>

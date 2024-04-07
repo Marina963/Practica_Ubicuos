@@ -1,3 +1,15 @@
+const socket = io();
+
+socket.on("connect", () => {
+  const h = document.querySelector("body");
+  h.style.backgroundColor = "blue"; 
+  socket.emit("POINTER_CONNECTED");
+});
+
+socket.on("ACK_CONNECTION", () => {
+  console.log("ack_movil");
+});
+
 const footer_favoritos = document.querySelector("#footer_favoritos");
 const favoritos = document.querySelector("#favoritos");
 const footer_maniqui = document.querySelector("#footer_maniqui");

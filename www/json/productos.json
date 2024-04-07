@@ -1,0 +1,24 @@
+[
+    {
+        "id": 1,
+        "nombre": "camiseta negra",
+        "imagen": "./images/camiseta_negra.png",
+        "qr": "./qr/qr_1.jpg",
+        "tallas": {"XL": 1,"L": 2,"M": 3,"S": 4,"XS": 5}       
+    },
+    {
+        "id": 2,
+        "nombre": "pantalones",
+        "imagen": "./images/pantalones",
+        "qr": "./qr/qr_2.jpg",
+        "tallas": {"XL": 1,"L":2 ,"M": 3,"S":4 ,"XS":5 }       
+    },
+    {
+        "id": 3,
+        "nombre": "blusa blanca",
+        "imagen": "./images/blusa_blanca.png",
+        "qr": "./qr/qr_3.jpg",
+        "tallas": {"XL":1 ,"L":2 ,"M": 3,"S": 4,"XS": 5}       
+    }
+
+]
