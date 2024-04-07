@@ -10,7 +10,6 @@ let clientSocket;
 
 io.on('connection', (socket) => {
   console.log(`socket connected ${socket.id}`);
-
   socket.on("POINTER_CONNECTED", () => {
     socket.emit("ACK_CONNECTION");
     if (clientSocket) clientSocket.emit("NEW_POINTER", { pointerId: socket.id });

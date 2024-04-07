@@ -1,7 +1,7 @@
 const socket = io();
 
 const qrcode = new QRCode("qrcode", {
-  text: "https://socket-io-pointer.andreabellucci1.repl.co/pointer/pointer.html",
+  text: "localhost:3000",
   width: 512,
   height: 512,
   colorDark: "#000000",
@@ -9,7 +9,11 @@ const qrcode = new QRCode("qrcode", {
   correctLevel: QRCode.CorrectLevel.H
 });
 
-socket.on("connect", () => {
+socket.on("connect", () => { 
+  const h = document.querySelector("body");
+  h.style.backgroundColor = "red"; 
+ 
+
   socket.emit("CLIENT_CONNECTED", { id: 1 });
 
   socket.on("ACK_CONNECTION", () => {
