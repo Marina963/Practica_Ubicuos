@@ -1,7 +1,7 @@
 const socket = io();
 
 const qrcode = new QRCode("qrcode", {
-  text: "localhost:3000",
+  text: "../app/index_app.html",
   width: 512,
   height: 512,
   colorDark: "#000000",
