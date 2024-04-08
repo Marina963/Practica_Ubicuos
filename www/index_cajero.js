@@ -24,5 +24,4 @@ socket.on("connect", () => {
     console.log("new pointer");
   })
 
-
 });

@@ -46,6 +46,7 @@ footer {
     width: 100vw;
     height: 75vh;
     overflow-y: auto;
+    background-color: rgb(230, 209, 188);
   }
   
 .prod_carrito {

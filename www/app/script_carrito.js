@@ -2,25 +2,12 @@ var lista_carrito = [];
 let carrito = document.getElementById('carrito');
 
 
-const loadTasks = async()=>{
+const load = ()=>{
     socket.emit("PEDIR_LISTA");
-        
-    socket.on("RESPUESTA_LISTA", (data) => {
-        lista_carrito = data;
-        console.log("recibida la lista");
-    }); 
-
-  lista_carrito.forEach(element => { 
-      var new_div = document.createElement('div');
-      new_div.classList.add("prod_carrito");
-      
-      new_div.innerHTML =  element['nombre'];
-      new_div.id = "prod_" + element['id'];
-      addListeners(new_div);
-      carrito.appendChild(new_div);
-  });
+    console.log("hizo peticion");
 }
 
+load();
 
 const add = (id) => {
     socket.emit("DATOS_PROD", id);
@@ -33,13 +20,13 @@ const add = (id) => {
     var new_div = document.createElement('div');
     new_div.classList.add("prod_carrito");
     new_div.innerHTML =  new_data['nombre'];
-    new_div.id = new_data['id'];
+    new_div.id = "prod_" +  new_data['id'];
     carrito.appendChild(new_div);
     addListeners(new_div);
     lista_carrito.push(new_data);
 }
 
-loadTasks();
+
 
 
 const remove = (element) => {
@@ -52,13 +39,13 @@ const remove = (element) => {
 
 const marcar_favorito = (element) => {
   if (!element.classList.contains("favorito")){
-    element.s
-    element.classList.add("task_done");
-    taskList[(element.id -1)]['done']=true;
+    transition_color(element);
+    element.classList.add("favorito");
+    lista_carrito[(element.id -1)]['favorito']=true;
   } else {
     transition_color(element);
-    element.classList.remove("task_done");
-    taskList[(element.id -1)]['done']=false;
+    element.classList.remove("favorito");
+    lista_carrito[(element.id -1)]['favorito']=false;
   }
 
   if ("vibrate" in navigator) {
@@ -67,15 +54,24 @@ const marcar_favorito = (element) => {
     console.log("No tiene la vibracion activada o no es posible acceder a ella");
   }
 
-  fetch('/tasks/update', 
-      {method: "POST", 
-      body: JSON.stringify(taskList), 
-      headers: {'Content-Type': 'application/json'}})
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);});
+  socket.emit("ACTUALIZAR_CARRITO", lista_carrito);
 }
 
+const transition_color = (element) => {
+  if (!element.classList.contains("favorito")){
+    if(element.classList.contains("old-color")){
+      element.classList.remove("old-color");
+    } else {
+      element.classList.add("new-color");
+    }
+  } else {
+    if(element.classList.contains("new-color")){
+      element.classList.remove("new-color");
+    } else {
+      element.classList.add("old-color");
+    }
+  }
+}
 
 const addListeners = (item) => {
   item.addEventListener("touchstart", e => {
@@ -86,3 +82,5 @@ const addListeners = (item) => {
     e.preventDefault();
   });
 };
+
+

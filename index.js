@@ -1,3 +1,4 @@
+const fs = require('fs');
 const express = require('express');
 const app = express();
 const path = require('path');
@@ -16,7 +17,17 @@ io.on('connection', (socket) => {
     if (clientSocket) clientSocket.emit("NEW_POINTER", { pointerId: socket.id });
   });
 
-
+  socket.on("PEDIR_LISTA", () => {
+    console.log("peticion lista");
+    fs.readFile("./www/json/carrito.json", function(err, data) {
+      if(err) {
+        console.log(err);
+        return;
+      }
+      console.log(JSON.parse(data));
+      socket.emit("RESPUESTA_LISTA",  JSON.parse(data));
+    });
+  })
 
   socket.on("CLIENT_CONNECTED", () => {
     clientSocket = socket;

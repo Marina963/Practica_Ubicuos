@@ -10,6 +10,20 @@ socket.on("ACK_CONNECTION", () => {
   console.log("ack_movil");
 });
 
+socket.on("RESPUESTA_LISTA", (data) => {
+  console.log("recibida la lista");
+  lista_carrito = data;
+  lista_carrito.forEach(element => { 
+    var new_div = document.createElement('div');
+    new_div.classList.add("prod_carrito");
+    
+    new_div.innerHTML =  element['nombre'];
+    new_div.id = "prod_" + element['id'];
+    addListeners(new_div);
+    carrito.appendChild(new_div);
+});
+}); 
+
 const footer_favoritos = document.querySelector("#footer_favoritos");
 const favoritos = document.querySelector("#favoritos");
 const footer_maniqui = document.querySelector("#footer_maniqui");
