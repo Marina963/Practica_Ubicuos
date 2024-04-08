@@ -2,8 +2,10 @@ const fs = require('fs');
 const express = require('express');
 const app = express();
 const path = require('path');
+const { stringify } = require('querystring');
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
+
 
 app.use('/', express.static(path.join(__dirname, 'www')));
 
@@ -29,10 +31,53 @@ io.on('connection', (socket) => {
     });
   })
 
+
+  socket.on("DATOS_PROD", (id) => {
+    console.log("peticion producto");
+    fs.readFile("./www/json/productos.json", function(err, lista_productos) {
+      if(err) {
+        console.log(err);
+        return;
+      }
+      lista_productos = JSON.parse(lista_productos);
+      lista_productos.forEach(element => {
+        if (element.id == id){
+          let nuevo_prod = {"id": id,
+          "nombre": element.nombre,
+          "imagen": element.imagen,
+          "talla": "S",
+          "cantidad": 1,
+          "precio": element.precio,
+          "favorito": "false"}
+          socket.emit("RESPUESTA_PROD",  nuevo_prod);
+          fs.readFile("./www/json/carrito.json", function(err, carrito) {
+            if(err) {
+              console.log(err);
+              return;
+            }
+            carrito = JSON.parse(carrito);
+            carrito.push(nuevo_prod);
+            fs.writeFile("./www/json/carrito.json", JSON.stringify(carrito), (error) => {
+              if(error){
+                reject(error);
+              }});
+          });
+        }
+      });
+    });
+    });
+
+    socket.on("SOBRESCRIBE_CARRITO", (lista)=> {
+      fs.writeFile("./www/json/carrito.json", JSON.stringify(lista), (error) => {
+        if(error){
+          reject(error);
+        }});
+    })
+
   socket.on("CLIENT_CONNECTED", () => {
     clientSocket = socket;
     clientSocket.emit("ACK_CONNECTION");
-  })
+  });
 });
 
 server.listen(3000, () => {

@@ -3,7 +3,6 @@
 
 <head>
     <script type="text/javascript" src="/socket.io/socket.io.js"></script>
-    <script type="text/javascript"src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <meta name="author" content="Marina Pérez Barbero, Irene Subías Serrano, Paula Subías Serrano">
@@ -23,15 +22,13 @@
         <p>maniqui</p>
     </div>
     <div id="armario" class="pag_principal">
-        <p>armario</p>
         <div id="carrito">
         </div>
     </div>
     <div id="esc_ropa" class="pag_principal">
         <p>Escanear Ropa</p>
         <video id="video" width="100%" autoplay></video>
-        <canvas id="canvas" style="display:none;"></canvas>
-        <div id="resultado"></div>
+        <canvas id="canvas" style="display:none;"></canvas>        
     </div>
     <div id="ubicacion" class="pag_principal">
         <p>ubicacion</p>
@@ -54,9 +51,11 @@
             <p> Ubicacion</p>
         </div>
     </footer>
-    <script src="script_app.js"> </script>
     <script src="script_carrito.js"> </script>
+    <script src="https://cdn.jsdelivr.net/npm/jsqr@1.0.0/dist/jsQR.js"></script>
     <script src="script_cap_qr.js"> </script>
+    <script src="script_app.js"> </script>
+
 </body>
 
 </html>

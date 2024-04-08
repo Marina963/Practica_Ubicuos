@@ -11,17 +11,11 @@ socket.on("ACK_CONNECTION", () => {
 });
 
 socket.on("RESPUESTA_LISTA", (data) => {
-  console.log("recibida la lista");
-  lista_carrito = data;
-  lista_carrito.forEach(element => { 
-    var new_div = document.createElement('div');
-    new_div.classList.add("prod_carrito");
-    
-    new_div.innerHTML =  element['nombre'];
-    new_div.id = "prod_" + element['id'];
-    addListeners(new_div);
-    carrito.appendChild(new_div);
-});
+  load(data);
+}); 
+
+socket.on("RESPUESTA_PROD", (data) => {
+  new_product(data);
 }); 
 
 const footer_favoritos = document.querySelector("#footer_favoritos");
@@ -36,11 +30,14 @@ const footer_ubicacion = document.querySelector("#footer_ubicacion");
 const ubicacion = document.querySelector("#ubicacion");
 
 window.addEventListener("load", () =>{
-  favoritos.style.display = 'block';
+  favoritos.style.display = 'none';
   maniqui.style.display = 'none';
-  armario.style.display = 'none';
+  armario.style.display = 'block';
   esc_ropa.style.display = 'none';
   ubicacion.style.display = 'none'; 
+  
+  socket.emit("PEDIR_LISTA");
+  console.log("hizo peticion");
 });
 footer_favoritos.addEventListener("click", () => {
   favoritos.style.display = 'block';
@@ -48,6 +45,7 @@ footer_favoritos.addEventListener("click", () => {
   armario.style.display = 'none';
   esc_ropa.style.display = 'none';
   ubicacion.style.display = 'none';
+  remove(2);
 });
 footer_maniqui.addEventListener("click", () => {
   favoritos.style.display = 'none';
@@ -69,6 +67,9 @@ footer_esc_ropa.addEventListener("click", () => {
   armario.style.display = 'none';
   esc_ropa.style.display = 'block';
   ubicacion.style.display = 'none';
+  add(2);
+  //iniciar_grabacion();
+  
 });
 footer_ubicacion.addEventListener("click", () => {
   favoritos.style.display = 'none';

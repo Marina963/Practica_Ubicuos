@@ -1,39 +1,68 @@
 var lista_carrito = [];
+var lista_favs = [];
 let carrito = document.getElementById('carrito');
 
 
-const load = ()=>{
-    socket.emit("PEDIR_LISTA");
-    console.log("hizo peticion");
-}
-
-load();
-
-const add = (id) => {
-    socket.emit("DATOS_PROD", id);
-        
-    socket.on("RESPUESTA_PROD", (data) => {
-        new_data = data;
-        console.log("recibida el producto");
-    }); 
-    
+const load = (data)=>{
+  console.log("recibida la lista");
+  lista_carrito = data;
+  lista_carrito.forEach(element => { 
     var new_div = document.createElement('div');
     new_div.classList.add("prod_carrito");
-    new_div.innerHTML =  new_data['nombre'];
-    new_div.id = "prod_" +  new_data['id'];
-    carrito.appendChild(new_div);
+    
+    new_div.innerHTML =  element['nombre'];
+    new_div.id = "prod_" + element['id'];
     addListeners(new_div);
-    lista_carrito.push(new_data);
+    carrito.appendChild(new_div);
+});
 }
 
 
+const add = (id) => {
+  var existe = 0;
+  lista_carrito.forEach(element => {
+    if(element.id == id) {
+      element.cantidad += 1;
+      socket.emit("SOBRESCRIBE_CARRITO", lista_carrito);
+      existe = 1;
+      return;
+    } 
+  });
+  if (existe == 0){
+    socket.emit("DATOS_PROD", id);
+  }
+}
 
 
-const remove = (element) => {
-  lista_carrito.splice((element.id -1), 1);
-  element.remove();
+const new_product = (data) => {
+  new_data = data;
+  console.log("recibida el producto");
+  var new_div = document.createElement('div');
+  new_div.classList.add("prod_carrito");
+  new_div.innerHTML =  new_data['nombre'];
+  new_div.id = "prod_" +  new_data['id'];
+  carrito.appendChild(new_div);
+  addListeners(new_div);
+  lista_carrito.push(new_data);
+}
 
-  socket.emit("ACTUALIZAR_CARRITO", lista_carrito);
+const remove = (id) => {
+  lista_carrito.forEach (element => {
+    if(element.id == id) {
+      element.cantidad -= 1;
+      if ("vibrate" in navigator) {
+        navigator.vibrate(1000);
+      } else {
+        console.log("No tiene la vibracion activada o no es posible acceder a ella");
+      }
+      if (element.cantidad == 0){
+        lista_carrito.splice((lista_carrito.indexOf(element)), 1);
+        document.getElementById("prod_"+id).remove();
+      }
+      socket.emit("SOBRESCRIBE_CARRITO", lista_carrito);
+      return;
+    }
+  })
 }
 
 
@@ -41,20 +70,16 @@ const marcar_favorito = (element) => {
   if (!element.classList.contains("favorito")){
     transition_color(element);
     element.classList.add("favorito");
-    lista_carrito[(element.id -1)]['favorito']=true;
+    lista_carrito[(lista_carrito.indexOf(element))]['favorito']=true;
+    lista_favs.push(element);
   } else {
     transition_color(element);
     element.classList.remove("favorito");
-    lista_carrito[(element.id -1)]['favorito']=false;
+    lista_carrito[(lista_carrito.indexOf(element))]['favorito']=false;
   }
 
-  if ("vibrate" in navigator) {
-    navigator.vibrate(1000);
-  } else {
-    console.log("No tiene la vibracion activada o no es posible acceder a ella");
-  }
-
-  socket.emit("ACTUALIZAR_CARRITO", lista_carrito);
+  socket.emit("SOBRESCRIBE_CARRITO", lista_carrito);
+  socket.emit("ACTUALIZA_FAV", lista_favs);
 }
 
 const transition_color = (element) => {
@@ -80,6 +105,13 @@ const addListeners = (item) => {
 
   item.addEventListener("touchend", e => {
     e.preventDefault();
+    if (!item.classList.contains("mostrar_producto")){
+        item.classList.remove("prod_carrito");
+        item.classList.add("mostrar_producto");
+    } else {
+        item.classList.remove("mostrar_producto");
+        item.classList.add("prod_carrito");
+    }
   });
 };
 
