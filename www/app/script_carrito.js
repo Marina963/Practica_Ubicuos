@@ -107,9 +107,11 @@ const addListeners = (item) => {
     if (!item.classList.contains("mostrar_producto")){
         item.classList.remove("prod_carrito");
         item.classList.add("mostrar_producto");
+        sensorABS.start()
     } else {
         item.classList.remove("mostrar_producto");
         item.classList.add("prod_carrito");
+        sensorABS.stop();
     }
   });
 };
