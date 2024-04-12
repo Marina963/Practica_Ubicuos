@@ -11,11 +11,20 @@ body {
   }
   
   #qr {
+    height: 100vh;
+    width: 100vw;
+  }
+  #qrcode{
+    position: absolute;
+    margin-top: 10vh;
+    margin-left: 35vw;
+  }
+  #qrcode_vidio{
     position: absolute;
     height: 100vh;
     width: 100vw;
-    margin-top: 20vh;
-    margin-left: 35vw;
+    margin-top: 10vh;
+    margin-left: 45vw;
   }
   
   #caja {

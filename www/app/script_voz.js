@@ -40,7 +40,7 @@ recognition.onresult = function(event) {
     case "favoritos":
       act_pag_favoritos();
       break;
-    case "escanear producto":
+    case "escanear":
       act_pag_esc_ropa();
       break;
     case "perfil":

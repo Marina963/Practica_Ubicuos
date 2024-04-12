@@ -8,17 +8,26 @@ const qrcode = new QRCode("qrcode", {
   colorLight: "#ffffff",
   correctLevel: QRCode.CorrectLevel.H
 });
+const qrcode_vidio = new QRCode("qrcode_vidio", {
+  text: "pago",
+  width: 256,
+  height: 256,
+  colorDark: "#000000",
+  colorLight: "#ffffff",
+  correctLevel: QRCode.CorrectLevel.H
+});
 const total = document.querySelector("#total");
 const back = document.querySelector("#back");
 const caja = document.querySelector("#caja");
-const p_caja = document.querySelector("#p_caja");
+const p_caja = document.querySelector("#p_cajero");
 const pago = document.querySelector("#pago");
 const boton_pago = document.querySelector("#boton_pago");
-const boton_cajero = document.querySelector("#boton_cajero_cargar_produtos");
+const code = document.getElementById("qrcode");
+const code_vido = document.getElementById("qrcode_vidio");
+const qr = document.getElementById("qr");
 
 var lista_pago = [];
 let carrito_pago = document.getElementById('lista_productos_cajero');
-
 caja.style.display = "none"
 
 
@@ -42,6 +51,11 @@ const load_pago = (data)=>{
   });
   total.innerHTML = "Total: " + precio + "€";
 }
+const mostar_qr_pago =()=>{
+  p_caja.style.display = "block";
+  code_vido.style.display = "block"
+  pago.style.display = "none"
+}
 
 
 socket.on("connect", () => {  
@@ -54,54 +68,40 @@ socket.on("connect", () => {
   });
 
   socket.on("NEW_POINTER", (data) => {
-    
-    const code = document.getElementById("qrcode");
-    code.style.display = "none";
+    qr.style.display = "none";
+    mostar_qr_pago();
     caja.style.display = "block"
-
-    pago.style.display = "none"
     console.log("new pointer");
 
     socket.on("RESPUESTA_LISTA_PAGO", (data) => {
+      pago.style.display = "block";
+      p_caja.style.display = "none";
+      code_vido.style.display = "none";
       load_pago(data);
     });
     socket.on("HAY_PRODUCTOS_DISPONIBLES", ()=>{
       lista_pago = [];
       socket.emit("SOBRESCRIBE_CARRITO", lista_pago);
-      boton_cajero.style.display = "block";
-      p_caja.style.display = "block";
-      pago.style.display = "none";
+      mostar_qr_pago();
       socket.emit("COMPRA_PAGADA");
     });
     socket.on("NO_HAY_PRODUCTOS_DISPONIBLES", ()=>{
-      console.log("No hay productos disponible");
+      alert("No hay productos disponible");
+      mostar_qr_pago();
+      
     });
 
   })
 
 });
 
-boton_cajero.addEventListener("click", () =>{
-  boton_cajero.style.display = "none";
-  p_caja.style.display = "none";
-  pago.style.display = "block";
-  socket.emit("LISTA_PAGO");
 
-})
 
 boton_pago.addEventListener("click", () =>{
   socket.emit("DISMINUIR_PRODUCTOS", lista_pago);
-  caja.style.display = "block"
-  p_caja.style.display = "block";
-  boton_cajero.style.display = "block";
-  pago.style.display = "none"
-  
+  mostar_qr_pago();
 });
 
 back.addEventListener("click", () => {
-  caja.style.display = "block"
-  p_caja.style.display = "block";
-  boton_cajero.style.display = "block";
-  pago.style.display = "none"
-
+  mostar_qr_pago();
 })

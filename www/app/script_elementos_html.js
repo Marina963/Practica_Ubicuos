@@ -47,18 +47,21 @@ const act_pag_esc_ropa= () => {
   esc_ropa.style.display = 'block';
   ubicacion.style.display = 'none';
   document.dispatchEvent(cambiar_sitio);
-  //leer_cb();
+  
+  // Se inicia la grbacion y se busca el qr,
+  iniciar_grabacion()
+  .then(valor_qr => {
+  if(valor_qr =="pago"){
+    socket.emit("LISTA_PAGO");
+  }else{
+    add(valor_qr);
 
-   // Se inicia la grbacion y se busca el qr,
-   
-   iniciar_grabacion()
-   .then(valor_qr => {
-     add(valor_qr);
-     act_pag_armario();
-   })
-   .catch(error => {
-     console.error("Error al iniciar la grabación:", error);
-   });
+  }
+    act_pag_armario();
+  })
+  .catch(error => {
+    console.error("Error al iniciar la grabación:", error);
+  });
    
 }
 const act_pag_ubicacion= () => {
