@@ -46,7 +46,6 @@ if ('Accelerometer' in window) {
         lastZ = sensorAcc.z;
         })
 
-        sensorAcc.start();
     } catch (err) { console.log(err); }
 }
 
