@@ -47,8 +47,10 @@ const act_pag_esc_ropa= () => {
   esc_ropa.style.display = 'block';
   ubicacion.style.display = 'none';
   document.dispatchEvent(cambiar_sitio);
-  
+  //leer_cb();
+
    // Se inicia la grbacion y se busca el qr,
+   
    iniciar_grabacion()
    .then(valor_qr => {
      add(valor_qr);
@@ -57,6 +59,7 @@ const act_pag_esc_ropa= () => {
    .catch(error => {
      console.error("Error al iniciar la grabación:", error);
    });
+   
 }
 const act_pag_ubicacion= () => {
   favoritos.style.display = 'none';

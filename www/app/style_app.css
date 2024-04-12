@@ -78,5 +78,15 @@ footer {
 .favorito {
     background-color: #e7105f;
 }
-
+#video{
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    
+}
+#canvas{
+    position: absolute;
+    top: 0;
+    width: 100vw;
+}
 

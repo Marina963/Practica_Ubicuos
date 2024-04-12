@@ -11,8 +11,26 @@ const iniciar_grabacion = () => {
     .then(stream => {
       video.srcObject = stream;
       video.play();
+      
       video.onloadedmetadata = () => {
         //Se llama a la funcion hasta que se encuentre la función
+        Quagga.init({
+          inputStream: {
+          name: "Live",
+          type: "LiveStream",
+          target:video
+          },
+          decoder: {
+          readers: ["code_128_reader"] 
+          }
+      }, function(err) {
+          if (err) {
+          console.error('Error al iniciar Quagga:', err);
+          return;
+          }
+          console.log('Quagga inicializado correctamente');
+          Quagga.start();
+      });
         animacion  = setInterval(() => detectQRCode(resolve), 100);
       }
     })
@@ -35,7 +53,16 @@ const detectQRCode = (resolve) =>{
       setInterval(animacion);
       resolve(code.data);
       detenerGrabacion();
-    }
+    }else {
+      // Si no detecta un QR, intenta detectar un código de barras
+      Quagga.onDetected(function(result) {
+        const code = result.codeResult.code;
+        console.log('Código de barras detectado:', code);
+        Quagga.stop()
+        resolve(code);
+        detenerGrabacion();
+      });
+  }
   } catch(error){}
 }
     
@@ -48,3 +75,6 @@ const detenerGrabacion = () => {
     video.srcObject = null;
   }
 }
+
+
+
