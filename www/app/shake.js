@@ -1,6 +1,4 @@
-const shakeEvent = new Event("shake");
-
-
+const sensorAcc = new Accelerometer({ frequency: 60 });
 let lastX = 0;
 let lastY = 0;
 let lastZ = 0;
@@ -14,12 +12,11 @@ const options = { threshold: 5};
 
 if ('Accelerometer' in window) {
     try {
-        const acc = new Accelerometer({ frequency: 60 });
-        //acc.addEventListener("reading", function(){ })
-        acc.onreading = () => {
-        const deltaX = Math.abs(lastX - acc.x);
-        const deltaY = Math.abs(lastY - acc.y);
-        const deltaZ = Math.abs(lastZ - acc.z);
+        sensorAcc.addEventListener("reading", () => { //})
+        //acc.onreading = () => {
+        const deltaX = Math.abs(lastX - sensorAcc.x);
+        const deltaY = Math.abs(lastY - sensorAcc.y);
+        const deltaZ = Math.abs(lastZ - sensorAcc.z);
 
         if ( ((deltaX > options.threshold) && (deltaY > options.threshold)) ||
             ((deltaX > options.threshold) && (deltaZ > options.threshold)) ||
@@ -31,8 +28,9 @@ if ('Accelerometer' in window) {
                     clearTimeout(timer);
                     timer = null;
                 }
-                document.dispatchEvent(shakeEvent);
                 lastTime = Date.now();
+                item = document.querySelector(".mostrar_producto");
+                marcar_favorito(item);
             }
         } else {
             if (shaking) {
@@ -43,12 +41,12 @@ if ('Accelerometer' in window) {
             }
         }
 
-        lastX = acc.x;
-        lastY = acc.y;
-        lastZ = acc.z;
-        }
+        lastX = sensorAcc.x;
+        lastY = sensorAcc.y;
+        lastZ = sensorAcc.z;
+        })
 
-        acc.start();
+        sensorAcc.start();
     } catch (err) { console.log(err); }
 }
 

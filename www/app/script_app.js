@@ -23,6 +23,9 @@ socket.on("ELIMINAR_CARRITO_PAGADO", (data) => {
   load(data);
 }); 
 
+
+const cambiar_sitio = new Event("cambio_nav");
+
 const footer_favoritos = document.querySelector("#footer_favoritos");
 const favoritos = document.querySelector("#favoritos");
 const footer_maniqui = document.querySelector("#footer_maniqui");
@@ -42,6 +45,7 @@ const act_pag_favoritos = () => {
   armario.style.display = 'none';
   esc_ropa.style.display = 'none';
   ubicacion.style.display = 'none';
+  document.dispatchEvent(cambiar_sitio);
 }
 
 const act_pag_maniqui= () => {
@@ -50,6 +54,7 @@ const act_pag_maniqui= () => {
   armario.style.display = 'none';
   esc_ropa.style.display = 'none';
   ubicacion.style.display = 'none';
+  document.dispatchEvent(cambiar_sitio);
 }
 
 const act_pag_armario= () => {
@@ -65,6 +70,7 @@ const act_pag_esc_ropa= () => {
   armario.style.display = 'none';
   esc_ropa.style.display = 'block';
   ubicacion.style.display = 'none';
+  document.dispatchEvent(cambiar_sitio);
 }
 const act_pag_ubicacion= () => {
   favoritos.style.display = 'none';
@@ -72,6 +78,7 @@ const act_pag_ubicacion= () => {
   armario.style.display = 'none';
   esc_ropa.style.display = 'none';
   ubicacion.style.display = 'block';
+  document.dispatchEvent(cambiar_sitio);
 }
 
 //Funciones para cuendo se recarge la paguina y se pulse añgún boton del footer cambie de paguina

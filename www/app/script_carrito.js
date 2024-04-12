@@ -10,7 +10,7 @@ const load = (data)=>{
     new_div.classList.add("prod_carrito");
     
     new_div.innerHTML =  element['nombre'];
-    new_div.id = "prod_" + element['id'];
+    new_div.id = element['id'] + element['talla'];
     addListeners(new_div);
     carrito.appendChild(new_div);
 });
@@ -39,15 +39,15 @@ const new_product = (data) => {
   var new_div = document.createElement('div');
   new_div.classList.add("prod_carrito");
   new_div.innerHTML =  new_data['nombre'];
-  new_div.id = "prod_" +  new_data['id'];
+  new_div.id = element['id'] + element['talla'];
   carrito.appendChild(new_div);
   addListeners(new_div);
   lista_carrito.push(new_data);
 }
 
-const remove = (id) => {
+const remove = (elem_div) => {
   lista_carrito.forEach (element => {
-    if(element.id == id) {
+    if(element['id'] + element['talla'] == elem_div.id) {
       element.cantidad -= 1;
       if ("vibrate" in navigator) {
         navigator.vibrate(1000);
@@ -56,7 +56,7 @@ const remove = (id) => {
       }
       if (element.cantidad == 0){
         lista_carrito.splice((lista_carrito.indexOf(element)), 1);
-        document.getElementById("prod_"+id).remove();
+        elem_div.remove();
       }
       socket.emit("SOBRESCRIBE_CARRITO", lista_carrito);
       return;
@@ -65,22 +65,25 @@ const remove = (id) => {
 }
 
 
-const marcar_favorito = (element) => {
-  if (!element.classList.contains("favorito")){
-    transition_color(element);
-    element.classList.add("favorito");
-    lista_carrito[(lista_carrito.indexOf(element))]["favorito"]=true;
-    lista_favs.push(element);
+const marcar_favorito = (elem_div) => {
+  if (!elem_div.classList.contains("favorito")){
+    //transition_color(elem_div);
+    elem_div.classList.add("favorito");
+    lista_carrito.forEach(element => {
+      if (elem_div.id == element['id'] + element['talla']){
+        lista_carrito[(lista_carrito.indexOf(element))]["favorito"]=true;
+        lista_favs.push(element);
+      }
+    });
   } else {
-    transition_color(element);
-    element.classList.remove("favorito");
-    console.log(element);
-    console.log(lista_carrito);
-    console.log(lista_carrito.indexOf(element));
-    console.log(lista_carrito[(lista_carrito.indexOf(element))]);
-    lista_carrito[(lista_carrito.indexOf(element))]["favorito"]=false;
+    //transition_color(element);
+    elem_div.classList.remove("favorito");
+    lista_carrito.forEach(element => {
+      if (elem_div.id == element['id'] + element['talla']){
+        lista_carrito[(lista_carrito.indexOf(element))]["favorito"]=true;
+      }
+  });
   }
-
   socket.emit("SOBRESCRIBE_CARRITO", lista_carrito);
   socket.emit("ACTUALIZA_FAV", lista_favs);
 }
@@ -111,19 +114,33 @@ const addListeners = (item) => {
     if (!item.classList.contains("mostrar_producto")){
         item.classList.remove("prod_carrito");
         item.classList.add("mostrar_producto");
-        sensorABS.start()
-        document.addEventListener("shake", qqe => {
+        sensorABS.start();
+        sensorAcc.start();
+        /*document.addEventListener("shake", qqe => {
           console.log("shaaaaking");
           console.log(document.querySelector(".mostrar_producto"));
           marcar_favorito(document.querySelector(".mostrar_producto"));
-        })
+        }) */
     } else {
         item.classList.remove("mostrar_producto");
         item.classList.add("prod_carrito");
         sensorABS.stop();
-        document.removeEventListener("shake", e);
+        sensorAcc.stop();
+        //document.removeEventListener("shake", e);
     }
   });
 };
+
+document.addEventListener("cambio_nav", e => {
+  item = document.querySelector(".mostrar_producto");
+  console.log(item);
+  if (item != null) {
+    item.classList.remove("mostrar_producto");
+    item.classList.add("prod_carrito");
+  }
+  sensorABS.stop();
+  sensorAcc.stop();
+
+})
 
 

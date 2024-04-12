@@ -1,6 +1,5 @@
 let posicion = []
-const options = { frequency: 1, referenceFrame: "device" };
-const sensorABS = new AbsoluteOrientationSensor(options);
+const sensorABS = new AbsoluteOrientationSensor({ frequency: 1, referenceFrame: "device" });
 let cont = 0;
 let item;
 let id = "";
@@ -14,9 +13,9 @@ sensorABS.addEventListener("reading", () => {
     if (cont >=4){
       navigator.vibrate(1000);
       item = document.getElementsByClassName("mostrar_producto");
-      id = item[0].id
-      remove(id[5]);
+      remove(item[0]);
       sensorABS.stop();
+      sensorAcc.stop();
     }
   }else{
     cont = 0
