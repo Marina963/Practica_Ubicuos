@@ -47,19 +47,4 @@ const detenerGrabacion = () => {
     video.pause();
     video.srcObject = null;
   }
-  /*
-  if (video.srcObject && video.srcObject.active) {
-    console.log("1 - camara activa");
-    video.pause();
-    video.srcObject = null;
-  } else {
-    console.log("1 - camara no activa");
-  }
-  
-  if (video.srcObject && video.srcObject.active) {
-    console.log("2 - camara activa");
-  } else {
-    console.log("2 - camara no activa");
-  }
-  */
 }

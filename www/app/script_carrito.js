@@ -41,7 +41,7 @@ const new_product = (data) => {
   var new_div = document.createElement('div');
   new_div.classList.add("prod_carrito");
   new_div.innerHTML =  new_data['nombre'];
-  new_div.id = element['id'] + element['talla'];
+  new_div.id = new_data['id'] + new_data['talla'];
   carrito.appendChild(new_div);
   addListeners(new_div);
   lista_carrito.push(new_data);

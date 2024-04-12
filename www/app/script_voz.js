@@ -4,7 +4,7 @@ var SpeechGrammarList = window.SpeechGrammarList || webkitSpeechGrammarList;
 const recognition = new SpeechRecognition();
 const speechRecognitionList = new SpeechGrammarList();
 
-const grammar ="#JSGF V1.0; grammar colors; public <accion> = ordenar | armario | maniqui | perfil | favoritos | escanerar ropa | parar   ;";
+const grammar ="#JSGF V1.0; grammar colors; public <accion> = ordenar | armario | maniqui | perfil | favoritos | escanerar productos | parar   ;";
 
 speechRecognitionList.addFromString(grammar, 1);
 recognition.grammars = speechRecognitionList;
@@ -40,7 +40,7 @@ recognition.onresult = function(event) {
     case "favoritos":
       act_pag_favoritos();
       break;
-    case "escanear ropa":
+    case "escanear producto":
       act_pag_esc_ropa();
       break;
     case "perfil":
