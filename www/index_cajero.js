@@ -8,7 +8,10 @@ const qrcode = new QRCode("qrcode", {
   colorLight: "#ffffff",
   correctLevel: QRCode.CorrectLevel.H
 });
+const total = document.querySelector("#total");
+const back = document.querySelector("#back");
 const caja = document.querySelector("#caja");
+const p_caja = document.querySelector("#p_caja");
 const pago = document.querySelector("#pago");
 const boton_pago = document.querySelector("#boton_pago");
 const boton_cajero = document.querySelector("#boton_cajero_cargar_produtos");
@@ -20,16 +23,24 @@ caja.style.display = "none"
 
 
 const load_pago = (data)=>{
+  let precio = 0;
   let prods = document.querySelectorAll('.prod_pago');
   prods.forEach(div => div.remove());
   lista_pago = data;
   lista_pago.forEach(element => { 
     var new_div = document.createElement('div');
     new_div.classList.add("prod_pago");
-    new_div.innerHTML =  element['nombre'];
+    new_div.innerHTML = ` <div class="contenedor_imagen">
+                            <img src="${element.imagen}" alt="imagen_del_producto">
+                          </div>
+                          <div>${element.nombre}</div>
+                          <div class="precio"> ${element.precio} €</div>
+                          <div> ${element.cantidad} u</div>`
     new_div.id = "prod_" + element['id'];
     carrito_pago.appendChild(new_div);
+    precio = precio + element.cantidad * element.precio;
   });
+  total.innerHTML = "Total: " + precio + "€";
 }
 
 
@@ -47,6 +58,7 @@ socket.on("connect", () => {
     const code = document.getElementById("qrcode");
     code.style.display = "none";
     caja.style.display = "block"
+
     pago.style.display = "none"
     console.log("new pointer");
 
@@ -57,6 +69,7 @@ socket.on("connect", () => {
       lista_pago = [];
       socket.emit("SOBRESCRIBE_CARRITO", lista_pago);
       boton_cajero.style.display = "block";
+      p_caja.style.display = "block";
       pago.style.display = "none";
       socket.emit("COMPRA_PAGADA");
     });
@@ -69,7 +82,8 @@ socket.on("connect", () => {
 });
 
 boton_cajero.addEventListener("click", () =>{
-  boton_cajero.style.display = "none"
+  boton_cajero.style.display = "none";
+  p_caja.style.display = "none";
   pago.style.display = "block";
   socket.emit("LISTA_PAGO");
 
@@ -77,5 +91,17 @@ boton_cajero.addEventListener("click", () =>{
 
 boton_pago.addEventListener("click", () =>{
   socket.emit("DISMINUIR_PRODUCTOS", lista_pago);
+  caja.style.display = "block"
+  p_caja.style.display = "block";
+  boton_cajero.style.display = "block";
+  pago.style.display = "none"
   
 });
+
+back.addEventListener("click", () => {
+  caja.style.display = "block"
+  p_caja.style.display = "block";
+  boton_cajero.style.display = "block";
+  pago.style.display = "none"
+
+})
