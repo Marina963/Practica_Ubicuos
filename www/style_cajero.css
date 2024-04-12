@@ -1,11 +1,35 @@
-.pointer{
-  margin: auto;
-  width: 32px;
-  height: 32px;
-  min-height: 32px;
-  background-color: red;
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  z-index: 9999;
+body{
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    font-size: 2vh;
 }
+#qr{
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    margin-top: 20vh;    
+    margin-left: 35vw;
+}
+#caja{
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+}
+h1{
+    text-align: center;
+    width: 100vw;
+    font-size: 8vh;
+}
+
+.prod_pago{
+    font-size: 5vh;
+    background-color: #EBDCF0;
+    border-radius: 10px;
+    width: 80vw;
+    margin-left: 10vw;
+    padding: 4vh;
+
+
+}
+

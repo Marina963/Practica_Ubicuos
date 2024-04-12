@@ -4,7 +4,6 @@ let carrito = document.getElementById('carrito');
 
 
 const load = (data)=>{
-  console.log("recibida la lista");
   lista_carrito = data;
   lista_carrito.forEach(element => { 
     var new_div = document.createElement('div');
@@ -112,6 +111,7 @@ const addListeners = (item) => {
     if (!item.classList.contains("mostrar_producto")){
         item.classList.remove("prod_carrito");
         item.classList.add("mostrar_producto");
+        sensorABS.start()
         document.addEventListener("shake", qqe => {
           console.log("shaaaaking");
           console.log(document.querySelector(".mostrar_producto"));
@@ -120,6 +120,7 @@ const addListeners = (item) => {
     } else {
         item.classList.remove("mostrar_producto");
         item.classList.add("prod_carrito");
+        sensorABS.stop();
         document.removeEventListener("shake", e);
     }
   });
