@@ -8,7 +8,9 @@ const load = (data)=>{
   lista_carrito.forEach(element => { 
     var new_div = document.createElement('div');
     new_div.classList.add("prod_carrito");
-    
+    if(element.favorito == true){
+      new_div.classList.add('favorito');
+    }
     new_div.innerHTML =  element['nombre'];
     new_div.id = element['id'] + element['talla'];
     addListeners(new_div);
@@ -80,7 +82,7 @@ const marcar_favorito = (elem_div) => {
     elem_div.classList.remove("favorito");
     lista_carrito.forEach(element => {
       if (elem_div.id == element['id'] + element['talla']){
-        lista_carrito[(lista_carrito.indexOf(element))]["favorito"]=true;
+        lista_carrito[(lista_carrito.indexOf(element))]["favorito"]=false;
       }
   });
   }
