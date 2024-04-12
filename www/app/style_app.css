@@ -77,6 +77,10 @@ footer {
     z-index: 2;
 }
 
+.favorito {
+    background-color: #e7105f;
+}
+
 #esc_ropa{
     background-color: rgb(72, 61, 83);
 }

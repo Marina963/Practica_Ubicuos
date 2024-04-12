@@ -70,12 +70,16 @@ const marcar_favorito = (element) => {
   if (!element.classList.contains("favorito")){
     transition_color(element);
     element.classList.add("favorito");
-    lista_carrito[(lista_carrito.indexOf(element))]['favorito']=true;
+    lista_carrito[(lista_carrito.indexOf(element))]["favorito"]=true;
     lista_favs.push(element);
   } else {
     transition_color(element);
     element.classList.remove("favorito");
-    lista_carrito[(lista_carrito.indexOf(element))]['favorito']=false;
+    console.log(element);
+    console.log(lista_carrito);
+    console.log(lista_carrito.indexOf(element));
+    console.log(lista_carrito[(lista_carrito.indexOf(element))]);
+    lista_carrito[(lista_carrito.indexOf(element))]["favorito"]=false;
   }
 
   socket.emit("SOBRESCRIBE_CARRITO", lista_carrito);
@@ -108,9 +112,15 @@ const addListeners = (item) => {
     if (!item.classList.contains("mostrar_producto")){
         item.classList.remove("prod_carrito");
         item.classList.add("mostrar_producto");
+        document.addEventListener("shake", qqe => {
+          console.log("shaaaaking");
+          console.log(document.querySelector(".mostrar_producto"));
+          marcar_favorito(document.querySelector(".mostrar_producto"));
+        })
     } else {
         item.classList.remove("mostrar_producto");
         item.classList.add("prod_carrito");
+        document.removeEventListener("shake", e);
     }
   });
 };

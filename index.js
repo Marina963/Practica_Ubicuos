@@ -74,6 +74,13 @@ io.on('connection', (socket) => {
         }});
     })
 
+    socket.on("ACTUALIZA_FAV", (lista)=> {
+      fs.writeFile("./www/json/favoritos.json", JSON.stringify(lista), (error) => {
+        if(error){
+          reject(error);
+        }});
+    })
+
   socket.on("CLIENT_CONNECTED", () => {
     clientSocket = socket;
     clientSocket.emit("ACK_CONNECTION");
