@@ -2,6 +2,7 @@ let video = document.getElementById('video');
 let canvas = document.getElementById('canvas');
 let context = canvas.getContext('2d', {willReadFrequently: true,});
 let animacion = null;
+let quaggaStarted = false; 
 
 const iniciar_grabacion = () => {
   //Promesa para poder devolver codigo qr
@@ -28,8 +29,8 @@ const iniciar_grabacion = () => {
           console.error('Error al iniciar Quagga:', err);
           return;
           }
-          console.log('Quagga inicializado correctamente');
           Quagga.start();
+          quaggaStarted = true; 
       });
         animacion  = setInterval(() => detectQRCode(resolve), 100);
       }
@@ -58,7 +59,8 @@ const detectQRCode = (resolve) =>{
       Quagga.onDetected(function(result) {
         const code = result.codeResult.code;
         console.log('Código de barras detectado:', code);
-        Quagga.stop()
+        Quagga.stop();
+        quaggaStarted = false; 
         resolve(code);
         detenerGrabacion();
       });
@@ -74,7 +76,9 @@ const detenerGrabacion = () => {
     video.pause();
     video.srcObject = null;
   }
+  
+  if (quaggaStarted) {
+    Quagga.stop();
+  }
 }
-
-
 

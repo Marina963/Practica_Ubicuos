@@ -30,6 +30,8 @@ const act_pag_maniqui= () => {
   ubicacion.style.display = 'none';
   document.dispatchEvent(cambiar_sitio);
   detenerGrabacion();
+  modelo();
+  //animate();
 }
 
 const act_pag_armario= () => {
