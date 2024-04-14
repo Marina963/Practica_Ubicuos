@@ -2,7 +2,7 @@
 const footer_favoritos = document.querySelector("#footer_favoritos");
 const favoritos = document.querySelector("#favoritos");
 const footer_maniqui = document.querySelector("#footer_maniqui");
-const maniqui = document.querySelector("#maniqui");
+maniqui = document.querySelector("#maniqui");
 const footer_armario = document.querySelector("#footer_armario");
 const armario = document.querySelector("#armario");
 const footer_esc_ropa = document.querySelector("#footer_esc_ropa");
@@ -20,6 +20,7 @@ const act_pag_favoritos = () => {
   ubicacion.style.display = 'none';
   document.dispatchEvent(cambiar_sitio);
   detenerGrabacion();
+  detenerGrabacion_ropa();
 }
 
 const act_pag_maniqui= () => {
@@ -28,10 +29,11 @@ const act_pag_maniqui= () => {
   armario.style.display = 'none';
   esc_ropa.style.display = 'none';
   ubicacion.style.display = 'none';
+
   document.dispatchEvent(cambiar_sitio);
   detenerGrabacion();
   modelo();
-  //animate();
+  detenerGrabacion_ropa();
 }
 
 const act_pag_armario= () => {
@@ -41,6 +43,7 @@ const act_pag_armario= () => {
   esc_ropa.style.display = 'none';
   ubicacion.style.display = 'none';
   detenerGrabacion();
+  detenerGrabacion_ropa();
 }
 const act_pag_esc_ropa= () => {
   favoritos.style.display = 'none';
@@ -49,6 +52,7 @@ const act_pag_esc_ropa= () => {
   esc_ropa.style.display = 'block';
   ubicacion.style.display = 'none';
   document.dispatchEvent(cambiar_sitio);
+  detenerGrabacion_ropa();
   
   // Se inicia la grbacion y se busca el qr,
   iniciar_grabacion()
@@ -74,4 +78,5 @@ const act_pag_ubicacion= () => {
   ubicacion.style.display = 'block';
   document.dispatchEvent(cambiar_sitio);
   detenerGrabacion();
+  detenerGrabacion_ropa();
 }
