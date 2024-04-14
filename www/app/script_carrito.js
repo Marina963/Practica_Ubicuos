@@ -4,6 +4,7 @@ let carrito = document.getElementById('carrito');
 
 
 const load = (data)=>{
+  console.log(data);
   lista_carrito = data;
   lista_carrito.forEach(element => { 
     var new_div = document.createElement('div');
