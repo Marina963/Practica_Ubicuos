@@ -11,7 +11,7 @@ const footer_ubicacion = document.querySelector("#footer_ubicacion");
 const ubicacion = document.querySelector("#ubicacion");
 
 
-//Funciones para poder cambiar de paguinas en la aplicación
+//Funciones para poder cambiar de paginas en la aplicación
 const act_pag_favoritos = () => {
   favoritos.style.display = 'block';
   maniqui.style.display = 'none';

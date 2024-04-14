@@ -69,7 +69,6 @@ const remove = (elem_div) => {
 
 const marcar_favorito = (elem_div) => {
   if (!elem_div.classList.contains("favorito")){
-    //transition_color(elem_div);
     elem_div.classList.add("favorito");
     lista_carrito.forEach(element => {
       if (elem_div.id == element['id'] + element['talla']){
@@ -78,7 +77,6 @@ const marcar_favorito = (elem_div) => {
       }
     });
   } else {
-    //transition_color(element);
     elem_div.classList.remove("favorito");
     lista_carrito.forEach(element => {
       if (elem_div.id == element['id'] + element['talla']){
@@ -88,22 +86,6 @@ const marcar_favorito = (elem_div) => {
   }
   socket.emit("SOBRESCRIBE_CARRITO", lista_carrito);
   socket.emit("ACTUALIZA_FAV", lista_favs);
-}
-
-const transition_color = (element) => {
-  if (!element.classList.contains("favorito")){
-    if(element.classList.contains("old-color")){
-      element.classList.remove("old-color");
-    } else {
-      element.classList.add("new-color");
-    }
-  } else {
-    if(element.classList.contains("new-color")){
-      element.classList.remove("new-color");
-    } else {
-      element.classList.add("old-color");
-    }
-  }
 }
 
 const addListeners = (item) => {
@@ -118,17 +100,11 @@ const addListeners = (item) => {
         item.classList.add("mostrar_producto");
         sensorABS.start();
         sensorAcc.start();
-        /*document.addEventListener("shake", qqe => {
-          console.log("shaaaaking");
-          console.log(document.querySelector(".mostrar_producto"));
-          marcar_favorito(document.querySelector(".mostrar_producto"));
-        }) */
     } else {
         item.classList.remove("mostrar_producto");
         item.classList.add("prod_carrito");
         sensorABS.stop();
         sensorAcc.stop();
-        //document.removeEventListener("shake", e);
     }
   });
 };
@@ -142,7 +118,6 @@ document.addEventListener("cambio_nav", e => {
   }
   sensorABS.stop();
   sensorAcc.stop();
-
 })
 
 

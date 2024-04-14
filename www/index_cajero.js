@@ -8,7 +8,8 @@ const qrcode = new QRCode("qrcode", {
   colorLight: "#ffffff",
   correctLevel: QRCode.CorrectLevel.H
 });
-const qrcode_vidio = new QRCode("qrcode_vidio", {
+
+const qrcode_video = new QRCode("qrcode_video", {
   text: "pago",
   width: 256,
   height: 256,
@@ -16,6 +17,7 @@ const qrcode_vidio = new QRCode("qrcode_vidio", {
   colorLight: "#ffffff",
   correctLevel: QRCode.CorrectLevel.H
 });
+
 const total = document.querySelector("#total");
 const back = document.querySelector("#back");
 const caja = document.querySelector("#caja");
@@ -23,14 +25,14 @@ const p_caja = document.querySelector("#p_cajero");
 const pago = document.querySelector("#pago");
 const boton_pago = document.querySelector("#boton_pago");
 const code = document.getElementById("qrcode");
-const code_vido = document.getElementById("qrcode_vidio");
+const code_video = document.getElementById("qrcode_video");
 const qr = document.getElementById("qr");
 
 var lista_pago = [];
 let carrito_pago = document.getElementById('lista_productos_cajero');
 caja.style.display = "none"
 
-
+// Funciones para cargar pantalla de pago
 const load_pago = (data)=>{
   let precio = 0;
   let prods = document.querySelectorAll('.prod_pago');
@@ -51,23 +53,23 @@ const load_pago = (data)=>{
   });
   total.innerHTML = "Total: " + precio + "€";
 }
+
 const mostar_qr_pago =()=>{
   p_caja.style.display = "block";
-  code_vido.style.display = "block"
+  code_video.style.display = "block"
   pago.style.display = "none"
 }
 
-
+//Conexión con el servidor
 socket.on("connect", () => {  
 
-  socket.emit("CLIENT_CONNECTED", { id: 1 });
+  socket.emit("CAJERO_CONNECTED", { id: 1 });
 
   socket.on("ACK_CONNECTION", () => {
-    //console.log("ACK", socket.id);
-    //console.log("ACK");
+    console.log("ACK_cajero");
   });
 
-  socket.on("NEW_POINTER", (data) => {
+  socket.on("NEW_CLIENT", (data) => {
     qr.style.display = "none";
     mostar_qr_pago();
     caja.style.display = "block"
@@ -76,25 +78,23 @@ socket.on("connect", () => {
     socket.on("RESPUESTA_LISTA_PAGO", (data) => {
       pago.style.display = "block";
       p_caja.style.display = "none";
-      code_vido.style.display = "none";
+      code_video.style.display = "none";
       load_pago(data);
     });
+
     socket.on("HAY_PRODUCTOS_DISPONIBLES", ()=>{
       lista_pago = [];
       socket.emit("SOBRESCRIBE_CARRITO", lista_pago);
       mostar_qr_pago();
       socket.emit("COMPRA_PAGADA");
     });
+
     socket.on("NO_HAY_PRODUCTOS_DISPONIBLES", ()=>{
       alert("No hay productos disponible");
       mostar_qr_pago();
-      
     });
-
   })
-
 });
-
 
 
 boton_pago.addEventListener("click", () =>{
