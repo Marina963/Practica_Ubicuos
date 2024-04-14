@@ -50,10 +50,6 @@ const animate = () => {
 }
 
 
-
-    
-
-
 sensorAbs.addEventListener("reading", () => {
     let posicionX = sensorAbs.quaternion[0];
     let posicionY = sensorAbs.quaternion[1];
