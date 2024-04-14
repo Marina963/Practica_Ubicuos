@@ -90,3 +90,15 @@ footer {
     width: 100vw;
 }
 
+.recomendacion{
+    bottom: 0;
+}
+
+.imagen_carrito{ 
+    position: relative;
+    width: 20%;
+    height: 20%;
+    display: flex;
+    align-items: center; /* Centrar verticalmente */
+    height: 100%; /* Ajustar la altura del contenedor */
+}
