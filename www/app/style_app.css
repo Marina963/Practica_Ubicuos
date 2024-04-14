@@ -65,6 +65,8 @@ footer div{
     margin-bottom: 2vh;
     font-size: 20px;
     color: #333;
+    display: grid;
+    grid-template-columns: 0.3fr 5fr  2fr;
 }
 
 .mostrar_producto {
@@ -80,6 +82,7 @@ footer div{
     font-size: 20px;
     color: #333;
     z-index: 2;
+    display: grid;
 }
 
 .favorito {
@@ -133,15 +136,41 @@ footer div{
 
 #footer_armario .icono{
     height: 80%;
+
+
 }.recomendacion{
-    bottom: 0;
+    position: relative;
+    height: 20%;
+    bottom: 0%;
+    z-index: 3;
 }
 
 .imagen_carrito{ 
-    position: relative;
-    width: 20%;
-    height: 20%;
-    display: flex;
-    align-items: center; /* Centrar verticalmente */
-    height: 100%; /* Ajustar la altura del contenedor */
+    max-width: 20vw;
+    max-height: auto;
+}
+
+.nombre_prod {
+    height: 100%;
+    padding-top: 15%;
+    box-sizing: border-box;
+}
+
+.precio_prod {
+    height: 100%;
+    padding-top: 40%;
+    box-sizing: border-box;
+}
+
+.div_imagen_recomendacion{ 
+    display: grid;
+}
+
+.imagen_recomendacion{ 
+    position:relative;
+    max-width: 50%;
+    max-height: 50%;
+    height: auto;
+    margin: auto; 
+    bottom: 0;
 }

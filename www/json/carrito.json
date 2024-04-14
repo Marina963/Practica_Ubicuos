@@ -1,1 +1,1 @@
-[]
+[{"id":3,"nombre":"Blusa blanca","imagen":"../images/blusa_blanca.png","talla":"S","cantidad":1,"precio":20,"favorito":"false","estilo":"elegante"},{"id":1,"nombre":"Camiseta negra","imagen":"../images/camiseta_negra.png","talla":"S","cantidad":1,"precio":10,"favorito":"false","estilo":"informal"},{"id":2,"nombre":"Pantalones","imagen":"../images/pantalones.png","talla":"S","cantidad":2,"precio":15,"favorito":"false","estilo":"informal"}]

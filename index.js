@@ -39,6 +39,16 @@ socket.on("CAJERO_CONNECTED", () => {
     });
   });
 
+  socket.on("PEDIR_TODOS", () => {
+    console.log("peticion todos los prod");
+    fs.readFile("./www/json/productos.json", function(err, data) {
+      if(err) {
+        console.log(err);
+        return;
+      }
+      socket.emit("RESPUESTA_TODOS",  JSON.parse(data));
+    });
+  });
 
   socket.on("DATOS_PROD", (id) => {
     console.log("peticion producto");
@@ -56,7 +66,8 @@ socket.on("CAJERO_CONNECTED", () => {
           "talla": "S",
           "cantidad": 1,
           "precio": element.precio,
-          "favorito": "false"}
+          "favorito": "false",
+          "estilo": element.estilo}
           socket.emit("RESPUESTA_PROD",  nuevo_prod);
 
           fs.readFile("./www/json/carrito.json", function(err, carrito) {
