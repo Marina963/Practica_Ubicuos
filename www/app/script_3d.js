@@ -1,16 +1,16 @@
-const modelo= () =>{
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-
-    const renderer = new THREE.WebGLRenderer({ alpha: true });
+let maniqui = document.querySelector("#maniqui");
+let model;
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+const renderer = new THREE.WebGLRenderer({ alpha: true });
+const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+directionalLight.position.set(1, 1, 1).normalize();
+const modelo= () =>{ 
     renderer.setSize(window.innerWidth, window.innerHeight);
-    document.body.appendChild(renderer.domElement);
-
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
-    directionalLight.position.set(1, 1, 1).normalize();
+    maniqui.appendChild(renderer.domElement);
     scene.add(directionalLight);
 
-    let model;
+   
     let loader = new THREE.GLTFLoader();
 
 
@@ -19,8 +19,8 @@ const modelo= () =>{
         function (gltf) {
             model = gltf.scene;
             //scene.add(model);
-            model.scale.set(5, 5, 5);
-            model.position.set(2, -4, 0);
+            model.scale.set(6, 6, 6);
+            model.position.set(3, -4, 0);
             model.traverse((child) => {
                 if (child.isMesh) {
                     // Aquí puedes ajustar el material según tus necesidades
@@ -39,7 +39,7 @@ const modelo= () =>{
     camera.position.z = 10;
     renderer.render(scene, camera);
 
-    
+
     // Update mesh rotation using quaternion.
     const sensorAbs = new AbsoluteOrientationSensor();
     sensorAbs.onreading = () => {
@@ -50,18 +50,15 @@ const modelo= () =>{
         
         // Si la inclinación supera el umbral, rotar el modelo hacia la izquierda o derecha
         if (Math.abs(tilt) > tiltThreshold) {
-            console.log(Math.abs(tilt) );
+            //console.log(Math.abs(tilt) );
             if (tilt > 0) {
-                // Inclinación hacia la derecha
-            
-                console.log("derecha");
-                    model.rotation.y += 0.1; // Ajusta la velocidad de rotación según sea necesario
+                //console.log("derecha");
+                //model.rotation.y += 0.1; // Ajusta la velocidad de rotación según sea necesario
             
             } else {
-                // Inclinación hacia la izquierda
-            
-                    console.log("izqa");
-                    model.rotation.y -= 0.1; // Ajusta la velocidad de rotación según sea necesario
+
+                //console.log("izqa");
+                //model.rotation.y -= 0.1; // Ajusta la velocidad de rotación según sea necesario
             
             }
         }
@@ -75,4 +72,12 @@ const modelo= () =>{
     
     
 }
+
+const quitarModelo = () => {
+    if (model) {
+        scene.remove(model); 
+        model = null; 
+        renderer.render(scene, camera);
+    }
+};
 
