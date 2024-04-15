@@ -5,7 +5,7 @@ const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerH
 const renderer = new THREE.WebGLRenderer({ alpha: true });
 const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
 directionalLight.position.set(1, 1, 1).normalize();
-const sensorAbs = new AbsoluteOrientationSensor({ frequency: 1, referenceFrame: "device" });
+const sensorAbs = new AbsoluteOrientationSensor({ frequency: 20, referenceFrame: "device" });
 const modelo= () =>{ 
     renderer.setSize(window.innerWidth, window.innerHeight);
     maniqui.appendChild(renderer.domElement);
@@ -13,18 +13,15 @@ const modelo= () =>{
 
    
     let loader = new THREE.GLTFLoader();
-
-
     loader.load(
         '../modelo_3d/maniqui.glb',
         function (gltf) {
             model = gltf.scene;
-            //scene.add(model);
-            model.scale.set(6, 6, 6);
-            model.position.set(3, -4, 0);
+            model.scale.set(20, 20, 20);
+            model.position.set(23, -8, 0);
             model.traverse((child) => {
                 if (child.isMesh) {
-                    // Aquí puedes ajustar el material según tus necesidades
+     
                     child.material = new THREE.MeshStandardMaterial({ map: child.material.map });
                 }
             });
@@ -58,10 +55,10 @@ sensorAbs.addEventListener("reading", () => {
             if (object.isMesh) {
                 if (posicionY > 0.1 ){
                     // Rotación hacia la derecha
-                    object.rotation.y += 0.4 ;
+                    object.rotation.y += 0.2 ;
                 } else if (posicionY < -0.1) {
                     // Rotación hacia la izquierda
-                    object.rotation.y -= 0.4 ;
+                    object.rotation.y -= 0.2 ;
                 }
             }
         });
