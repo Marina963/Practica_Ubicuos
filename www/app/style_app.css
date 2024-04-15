@@ -64,7 +64,6 @@ footer div{
     width: 100vw;
     height: 75vh;
     overflow-y: auto;
-
 }
   
 .prod_carrito {
@@ -141,6 +140,29 @@ footer div{
     background-color: #e7105f;
 }
 
+#lista_favs {
+    margin: 0;
+    position: fixed;
+    top: 8vh;
+    width: 100vw;
+    height: 75vh;
+    overflow-y: auto;
+}
+
+.prod_fav {
+    width: 100vw; 
+    height: auto;
+    position: relative;
+    background-color: #ecd0f7;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 5% 0%;
+    margin-bottom: 2vh;
+    font-size: 20px;
+    color: #333;
+    display: grid;
+    grid-template-columns: 0.3fr 5fr  2fr;
+}
 
 /*----------------Estilo del escaner-----------------*/
 #video{
@@ -163,17 +185,17 @@ footer div{
     top: 5vh;
     right: 5vh;
 }
+
 #camara_maniqui {
     position:absolute;
     z-index: 2;
     height: 5vh;
     top: 5vh;
     right: 5vh;
-    background-color: #fff;
+    background-color: rgb(236, 207, 247);
     border-radius: 100px;
     padding: 1vh;
 }
-
 
 #camara{
     max-width: 100%;
@@ -181,20 +203,14 @@ footer div{
     width: 100%;
     height: auto;
 }
+
 #div_video_ropa{
     height: 100vh;
     width:100vw ;
 }
+
 #video_ropa{
     width: 100%;
-}
-
-#lista_maniqui{
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    background-color: aqua;
-    height: 40vh;
 }
 
 
@@ -202,9 +218,41 @@ footer div{
     z-index: 2;
     position: absolute;
     top: 10vh;
-    right: 9vh;
-    height: 30vh;
+    right: 13vh;
+    height: 25vh;
 
 }
 
+/*Div general*/
+#lista_maniqui{
+    position: absolute;
+    bottom: 7vh;
+    left: 0;
+    background-color: rgb(196, 134, 227);
+    height: 20vh;
+    width: 99vw;
+
+    display: inline-grid; 
+    grid-template-columns: repeat(auto-fill, minmax(39vw, 1fr)); 
+}
+
+/*Cada div de cada elem*/
+.prod_maniqui{
+    width: 35vw; 
+    height: 35vw;
+    margin: auto;
+    position: relative;
+    background-color: rgb(236, 207, 247);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: grid; 
+}
+
+/*Imagen*/
+.imagen_maniqui{
+    max-width: 90%;
+    max-height: 90%;
+    height: 90%;
+    margin: auto;
+}
 

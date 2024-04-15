@@ -1,12 +1,8 @@
 const mostrar_recomendaciones = (elem_div) => {
-    socket.emit("PEDIR_TODOS");
-
-    socket.on("RESPUESTA_TODOS", (data) => {
-        lista_prod = data;
 
         lista_carrito.forEach (element => {
-        if(element['id'] + element['talla'] == elem_div.id) {
-            lista_prod.forEach(recomend => {
+            if(element['id'] + element['talla'] == elem_div.id) {
+                lista_prod.forEach(recomend => {
 
                 if (recomend.estilo == element.estilo && element.id != recomend.id) {
                     var new_div = document.createElement('div');
@@ -27,12 +23,10 @@ const mostrar_recomendaciones = (elem_div) => {
             });
         }
         })
-      }); 
-  }
+      }; 
 
 const cerrar_recomend = () => {
     recomendaciones = document.getElementsByClassName("recomendacion");
-    console.log(recomendaciones);
     while(recomendaciones[0]){
         recomendaciones[0].parentNode.removeChild(recomendaciones[0]);
     }

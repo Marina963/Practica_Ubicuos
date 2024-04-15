@@ -1,20 +1,28 @@
 var lista_carrito = [];
 var lista_favs = [];
+var lista_prod = [];
 let carrito = document.getElementById('carrito');
+let div_favoritos = document.getElementById('lista_favs');
 
 
-const load = (data)=>{
+const load = (data, products)=>{
+  let prods = document.querySelectorAll('.prod_carrito');
+  prods.forEach(div => div.remove());
   lista_carrito = data;
+  lista_prod = products;
+  console.log(lista_prod);
   lista_carrito.forEach(element => { 
     var new_div = document.createElement('div');
     new_div.classList.add("prod_carrito");
-    if(element.favorito == true){
-      new_div.classList.add('favorito');
-    }
     new_div.innerHTML = `<img class="imagen_carrito" src="${element.imagen}" alt="imagen_del_producto">
                         <div class="nombre_prod">${element.nombre}</div>
                         <div class="precio_prod"> ${element.precio} €</div>`
     new_div.id = element['id'] + element['talla'];
+    if(element.favorito == true){
+      new_div.classList.add('favorito');
+      div_favoritos.appendChild(new_div);
+      lista_favs.push(element);
+    }
     addListeners(new_div);
     carrito.appendChild(new_div);
 });

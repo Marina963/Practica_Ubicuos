@@ -16,13 +16,18 @@ window.addEventListener("load", () =>{
 });
 
 // Recibir respuestas del servidor
-socket.on("RESPUESTA_LISTA", (data) => {
-  load(data);
+socket.on("RESPUESTA_LISTA", (data, products) => {
+  load(data, products);
 }); 
 
 socket.on("RESPUESTA_PROD", (data) => {
   new_product(data);
 }); 
+
+socket.on("RESPUESTA_TODOS", (data, item) => {
+  console.log(data, item);
+  mostrar_recomendaciones(data, item);
+})
 
 socket.on("ELIMINAR_CARRITO_PAGADO", (data) => {
   let prods = document.querySelectorAll('.prod_carrito');
