@@ -83,6 +83,7 @@ socket.on("CAJERO_CONNECTED", () => {
   });
 
   socket.on("LISTA_PAGO", () => {
+    socket.emit("ACTIVAR_DADO");
     fs.readFile("./www/json/carrito.json", function(err, data) {
       if(err) {
         console.log(err);
