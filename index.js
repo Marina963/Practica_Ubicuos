@@ -35,18 +35,12 @@ socket.on("CAJERO_CONNECTED", () => {
         console.log(err);
         return;
       }
-      socket.emit("RESPUESTA_LISTA",  JSON.parse(data));
-    });
-  });
-
-  socket.on("PEDIR_TODOS", () => {
-    console.log("peticion todos los prod");
-    fs.readFile("./www/json/productos.json", function(err, data) {
-      if(err) {
-        console.log(err);
-        return;
-      }
-      socket.emit("RESPUESTA_TODOS",  JSON.parse(data));
+      fs.readFile("./www/json/productos.json", function(err, products) {
+        if(err) {
+          console.log(err);
+          return;
+        }
+      socket.emit("RESPUESTA_LISTA",  JSON.parse(data), JSON.parse(products));})
     });
   });
 
