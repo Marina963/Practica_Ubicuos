@@ -64,7 +64,6 @@ footer div{
     width: 100vw;
     height: 75vh;
     overflow-y: auto;
-
 }
   
 .prod_carrito {
@@ -141,6 +140,29 @@ footer div{
     background-color: #e7105f;
 }
 
+#lista_favs {
+    margin: 0;
+    position: fixed;
+    top: 8vh;
+    width: 100vw;
+    height: 75vh;
+    overflow-y: auto;
+}
+
+.prod_fav {
+    width: 100vw; 
+    height: auto;
+    position: relative;
+    background-color: #ecd0f7;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 5% 0%;
+    margin-bottom: 2vh;
+    font-size: 20px;
+    color: #333;
+    display: grid;
+    grid-template-columns: 0.3fr 5fr  2fr;
+}
 
 /*----------------Estilo del escaner-----------------*/
 #video{
