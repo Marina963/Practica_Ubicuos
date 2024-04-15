@@ -4,6 +4,8 @@ let carrito = document.getElementById('carrito');
 
 
 const load = (data)=>{
+  let prods = document.querySelectorAll('.prod_carrito');
+  prods.forEach(div => div.remove());
   lista_carrito = data;
   lista_carrito.forEach(element => { 
     var new_div = document.createElement('div');
