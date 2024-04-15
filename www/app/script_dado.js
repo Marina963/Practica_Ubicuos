@@ -1,5 +1,7 @@
+const sensorDado = new Accelerometer({ frequency: 60 });
 const dice = document.getElementById('dice')
 const rollButton = document.getElementById('rollButton')
+const options_dado = { threshold: 5};
 var tiempo = 0
 
 const rollDice = () =>{
@@ -39,3 +41,16 @@ rollButton.addEventListener('click', function(e){
     e.preventDefault()
     rollDice()
 })
+
+sensorDado.addEventListener("reading", () => {
+    const deltaX = Math.abs(lastX - sensorAcc.x);
+    const deltaZ = Math.abs(lastZ - sensorAcc.z);
+    if ((deltaX > options_dado.threshold) && (deltaZ > options_dado.threshold)) {
+        console.log('tira_dado');
+        rollDice();
+        dice.style.display = "none";
+        sensorDado.stop();
+    }
+    lastX = sensorDado.x;
+    lastZ = sensorDado.z;
+    })

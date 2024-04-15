@@ -97,7 +97,7 @@ socket.on("connect", () => {
 });
 
 
-boton_pago.addEventListener("click", () =>{
+socket.on("MENSAJE_PAGO", () =>{
   socket.emit("DISMINUIR_PRODUCTOS", lista_pago);
   mostar_qr_pago();
 });
