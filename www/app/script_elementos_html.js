@@ -21,6 +21,7 @@ const act_pag_favoritos = () => {
   document.dispatchEvent(cambiar_sitio);
   detenerGrabacion();
   detenerGrabacion_ropa();
+  quitarModelo();
 }
 
 const act_pag_maniqui= () => {
@@ -34,6 +35,7 @@ const act_pag_maniqui= () => {
   detenerGrabacion();
   modelo();
   detenerGrabacion_ropa();
+
 }
 
 const act_pag_armario= () => {
@@ -44,6 +46,7 @@ const act_pag_armario= () => {
   ubicacion.style.display = 'none';
   detenerGrabacion();
   detenerGrabacion_ropa();
+  quitarModelo();
 }
 const act_pag_esc_ropa= () => {
   favoritos.style.display = 'none';
@@ -53,6 +56,7 @@ const act_pag_esc_ropa= () => {
   ubicacion.style.display = 'none';
   document.dispatchEvent(cambiar_sitio);
   detenerGrabacion_ropa();
+  quitarModelo();
   
   // Se inicia la grbacion y se busca el qr,
   iniciar_grabacion()
@@ -79,4 +83,5 @@ const act_pag_ubicacion= () => {
   document.dispatchEvent(cambiar_sitio);
   detenerGrabacion();
   detenerGrabacion_ropa();
+  quitarModelo();
 }
