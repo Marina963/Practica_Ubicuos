@@ -26,7 +26,6 @@ const load = (data, products)=>{
       new_fav.id = element['id'] + "fav";
       new_fav.classList.add('prod_fav');
       div_favoritos.appendChild(new_fav);
-      console.log(new_fav);
       lista_favs.push(element);
     }
     new_div.classList.add("prod_carrito");
@@ -90,18 +89,30 @@ const remove = (elem_div) => {
 const marcar_favorito = (elem_div) => {
   if (!elem_div.classList.contains("favorito")){
     elem_div.classList.add("favorito");
+    var new_fav = document.createElement('div');
+    new_fav.innerHTML = elem_div.innerHTML;
+    new_fav.classList.add('prod_fav');
     lista_carrito.forEach(element => {
       if (elem_div.id == element['id'] + element['talla']){
         lista_carrito[(lista_carrito.indexOf(element))]["favorito"]=true;
         lista_favs.push(element);
+        new_fav.id = element['id'] + "fav";
+        div_favoritos.appendChild(new_fav);
       }
     });
   } else {
     elem_div.classList.remove("favorito");
+    elem_fav = document.getElementById
     lista_carrito.forEach(element => {
       if (elem_div.id == element['id'] + element['talla']){
         lista_carrito[(lista_carrito.indexOf(element))]["favorito"]=false;
       }
+    lista_favs.forEach(elem_fav => {
+      if (elem_div.id == elem_fav['id'] + elem_fav['talla']){
+        document.getElementById(elem_fav.id.toString() + "fav").remove();
+        lista_favs.splice((lista_favs.indexOf(element)), 1);
+      }
+    })
   });
   }
   socket.emit("SOBRESCRIBE_CARRITO", lista_carrito);
