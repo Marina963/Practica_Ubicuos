@@ -7,13 +7,15 @@ let lastTime =  Date.now();
 let shaking = false;
 let timer = null;
 
-const options = { threshold: 5};
+const options = { threshold: 10};
 
 
 if ('Accelerometer' in window) {
     try {
-        sensorAcc.addEventListener("reading", () => { //})
-        //acc.onreading = () => {
+        sensorAcc.addEventListener("reading", () => { 
+            let lastX = 0;
+            let lastY = 0;
+            let lastZ = 0;
         const deltaX = Math.abs(lastX - sensorAcc.x);
         const deltaY = Math.abs(lastY - sensorAcc.y);
         const deltaZ = Math.abs(lastZ - sensorAcc.z);
@@ -35,9 +37,6 @@ if ('Accelerometer' in window) {
         } else {
             if (shaking) {
             shaking = false;
-            /*timer = setTimeout(() => {
-                console.log("stop");
-            }, 500);*/
             }
         }
 

@@ -16,8 +16,16 @@ const load = (data, products)=>{
   lista_carrito.forEach(element => { 
     var new_div  = document.createElement('div');
     new_div.innerHTML = `<img class="imagen_carrito" src="${element.imagen}" alt="imagen_del_producto">
-                        <div class="nombre_prod">${element.nombre}</div>
-                        <div class="precio_prod"> ${element.precio} €</div>`
+                        <div class="texto_prod">
+                          <div class="nombre_talla">
+                            <div class="nombre_prod">${element.nombre}</div>
+                            <div class="talla_prod">Talla:  ${element.talla}</div>
+                          </div>
+                          <div class="cant_precio">
+                            <div class="cantidad_prod"> Cantidad: ${element.cantidad} ud</div>
+                            <div class="precio_prod">Precio: ${element.precio} €/ud</div>
+                          </div>
+                        </div>`
     new_div.id = element['id'] + element['talla'];
     if(element.favorito == true){
       new_div.classList.add('favorito');
@@ -40,6 +48,9 @@ const add = (id) => {
   lista_carrito.forEach(element => {
     if(element.id == id) {
       element.cantidad += 1;
+      elem_div = document.getElementById(element.id + element.talla);
+      cant_prod_div = elem_div.querySelector(".cantidad_prod");
+      cant_prod_div.innerHTML = element.cantidad + " ud";
       socket.emit("SOBRESCRIBE_CARRITO", lista_carrito);
       existe = 1;
       return;
@@ -56,9 +67,17 @@ const new_product = (new_data) => {
   var new_div = document.createElement('div');
   new_div.classList.add("prod_carrito");
 
-  new_div.innerHTML = `<img class="imagen_carrito" src="${new_data.imagen}" alt="imagen_del_producto">
-                        <div class="nombre_prod">${new_data.nombre}</div>
-                        <div class="precio_prod"> ${new_data.precio} €</div>`
+  new_div.innerHTML =   `<img class="imagen_carrito" src="${element.imagen}" alt="imagen_del_producto">
+                        <div class="texto_prod">
+                          <div class="nombre_talla">
+                            <div class="nombre_prod">${element.nombre}</div>
+                            <div class="talla_prod">Talla:  ${element.talla}</div>
+                          </div>
+                          <div class="cant_precio">
+                            <div class="cantidad_prod">Cantidad:  ${element.cantidad} ud</div>
+                            <div class="precio_prod">Precio:  ${element.precio} €/ud</div>
+                          </div>
+                        </div>`
   new_div.id = new_data['id'] + new_data['talla'];
 
   carrito.appendChild(new_div);
@@ -70,6 +89,9 @@ const remove = (elem_div) => {
   lista_carrito.forEach (element => {
     if(element['id'] + element['talla'] == elem_div.id) {
       element.cantidad -= 1;
+      cant_prod_div = elem_div.querySelector(".cantidad_prod");
+      cant_prod_div.innerHTML = "Cantidad: " + element.cantidad + " ud";
+
       if ("vibrate" in navigator) {
         navigator.vibrate(1000);
       } else {
@@ -129,15 +151,30 @@ const addListeners = (item) => {
     if (!item.classList.contains("mostrar_producto")){
         item.classList.remove("prod_carrito");
         item.classList.add("mostrar_producto");
+        item.innerHTML = `<div class="datos_prod">${item.innerHTML}</div>
+                          <div class="seccion_recomendados">Otros productos del mismo estilo, presione para añadir:<div class="recomendaciones"></div></div>`
         sensorABS.start();
         sensorAcc.start();
+        div_nombre_talla = item.querySelector(".nombre_talla");
+        div_nombre_talla.style.gridTemplateColumns= "none";
+        div_nombre_talla.style.gridTemplateRows= "3fr 4fr";
+        div_cant_precio = item.querySelector(".cant_precio");
+        div_cant_precio.style.gridTemplateRows= "1fr 2fr";
+        div_cant_precio.style.marginLeft= 0;
         mostrar_recomendaciones(item);
     } else {
         item.classList.remove("mostrar_producto");
         item.classList.add("prod_carrito");
+        item.innerHTML = item.querySelector(".datos_prod").innerHTML;
         sensorABS.stop();
         sensorAcc.stop();
-        cerrar_recomend();
+        div_nombre_talla = item.querySelector(".nombre_talla");
+        div_nombre_talla.style.gridTemplateColumns= "3fr 1fr";
+        div_nombre_talla.style.gridTemplateRows= "none";
+        div_cant_precio = item.querySelector(".cant_precio");
+        div_cant_precio.style.gridTemplateRows= "1fr 1fr";
+        div_cant_precio.style.marginLeft= "30%";
+        //cerrar_recomend();
     }
   });
 };
@@ -146,9 +183,10 @@ document.addEventListener("cambio_nav", e => {
   item = document.querySelector(".mostrar_producto");
   if (item != null) {
     item.classList.remove("mostrar_producto");
+    item.innerHTML = item.querySelector(".datos_prod").innerHTML;
     item.classList.add("prod_carrito");
   }
-  cerrar_recomend();
+  //cerrar_recomend();
   sensorABS.stop();
   sensorAcc.stop();
 })
