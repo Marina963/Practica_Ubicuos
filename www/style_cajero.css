@@ -72,8 +72,13 @@ body {
     align-items: center; /* Centrar verticalmente */
     height: 100%; /* Ajustar la altura del contenedor */
   }
-  #boton_pago{
-    background-color:#875b96 ;
-    margin-top: 1vh;
-    border-radius: 10px;
+
+  #pagado{
+    display: none;
+    text-align: center;
+    background-color: #fff;
+    position: absolute;
+    z-index: 10;
+    height:100vh;
+    width: 100vw;
   }

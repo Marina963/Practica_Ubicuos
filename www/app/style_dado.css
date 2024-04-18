@@ -16,11 +16,16 @@
     padding: 5%;
 }
 
+#total{
+    display: none;
+}
+
 #dado > button{
     margin-top: 10%;
     font-size: 6vh;
     background-color: #d589f3;
     border-color:#eee0f4;
+    display: none;
 }
 
 .dice-container {

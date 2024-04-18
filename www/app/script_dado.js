@@ -1,10 +1,12 @@
 const sensorDado = new Accelerometer({ frequency: 60 });
-const dice = document.getElementById('dice')
-const rollButton = document.getElementById('rollButton')
+const dice = document.getElementById('dice');
+const boton_pago = document.getElementById('boton_pago');
+const sacude = document.getElementById('sacude');
 const options_dado = { threshold: 5};
-var tiempo = 0
+var tiempo = 0;
+let total;
 
-const rollDice = () =>{
+const rollDice = (total) =>{
     if(!dice.classList.contains('rolling'))
         dice.classList.add('rolling');
 
@@ -31,24 +33,34 @@ const rollDice = () =>{
     }
     setTimeout(()=>{
         dice.dataset.face = diceVal;
-
+        total = document.getElementById('total').textContent;
+        console.log(total);
+        total = total - total*((diceVal*5)/100);
+        sacude.innerHTML = "¡Felicidades! Has ganado un descuento del " + diceVal*5 + "%. Tu nuevo total es: " + total + "€";
+        boton_pago.style.display = "inline-block";
         if(dice.classList.contains('rolling'))
             dice.classList.remove('rolling');
+        socket.emit("NUEVO_TOTAL", total)
     }, tiempo)
 }
 
-rollButton.addEventListener('click', function(e){
-    e.preventDefault()
-    rollDice()
+boton_pago.addEventListener('click', function(e){
+    e.preventDefault();
+    socket.emit("PAGAR");
+    navigator.vibrate(1000);
+    dado.style.display = "none";
+    sacude.innerHTML = "¡Sacude el movil para tirar el dado y conseguir un descuento!";
 })
 
 sensorDado.addEventListener("reading", () => {
     const deltaX = Math.abs(lastX - sensorAcc.x);
+    const deltaY = Math.abs(lastY - sensorAcc.y);
     const deltaZ = Math.abs(lastZ - sensorAcc.z);
-    if ((deltaX > options_dado.threshold) && (deltaZ > options_dado.threshold)) {
+    if ( ((deltaX > options.threshold) && (deltaY > options.threshold)) ||
+        ((deltaX > options.threshold) && (deltaZ > options.threshold)) ||
+        ((deltaY > options.threshold) && (deltaZ > options.threshold)) ) {
         console.log('tira_dado');
         rollDice();
-        dice.style.display = "none";
         sensorDado.stop();
     }
     lastX = sensorDado.x;
