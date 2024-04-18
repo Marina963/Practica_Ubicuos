@@ -33,6 +33,7 @@ const act_pag_maniqui= () => {
 
   document.dispatchEvent(cambiar_sitio);
   detenerGrabacion();
+  quitarModelo();
   modelo();
   detenerGrabacion_ropa();
 
