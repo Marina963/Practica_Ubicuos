@@ -92,6 +92,17 @@ socket.on("CAJERO_CONNECTED", () => {
     });
   });
 
+  socket.on("MANDAR_TOTAL", (precio) =>{
+    socketMovil.emit("ACTIVAR_DADO", precio);
+  });
+
+  socket.on("NUEVO_TOTAL", (total) =>{
+    socketCajero.emit("TOTAL_CAJERO", total);
+  });
+
+  socket.on("PAGAR", () =>{
+    socketCajero.emit("MENSAJE_PAGO");
+  });
 
 // Actualizar json
   socket.on("SOBRESCRIBE_CARRITO", (lista)=> {

@@ -23,10 +23,10 @@ const back = document.querySelector("#back");
 const caja = document.querySelector("#caja");
 const p_caja = document.querySelector("#p_cajero");
 const pago = document.querySelector("#pago");
-const boton_pago = document.querySelector("#boton_pago");
 const code = document.getElementById("qrcode");
 const code_video = document.getElementById("qrcode_video");
 const qr = document.getElementById("qr");
+const pagado = document.getElementById('pagado');
 
 var lista_pago = [];
 let carrito_pago = document.getElementById('lista_productos_cajero');
@@ -51,8 +51,13 @@ const load_pago = (data)=>{
     carrito_pago.appendChild(new_div);
     precio = precio + element.cantidad * element.precio;
   });
+  socket.emit("MANDAR_TOTAL", precio);
   total.innerHTML = "Total: " + precio + "€";
 }
+
+socket.on("TOTAL_CAJERO", (precio) =>{
+  total.innerHTML = "Total: " + precio + "€";
+});
 
 const mostar_qr_pago =()=>{
   p_caja.style.display = "block";
@@ -96,10 +101,16 @@ socket.on("connect", () => {
   })
 });
 
-
-boton_pago.addEventListener("click", () =>{
+socket.on("MENSAJE_PAGO", () =>{
   socket.emit("DISMINUIR_PRODUCTOS", lista_pago);
-  mostar_qr_pago();
+  console.log(pagado)
+  pagado.style.display = "block";
+  caja.style.display = "none";
+  setTimeout(()=>{
+    pagado.style.display = "none";
+    caja.style.display = "block";
+    mostar_qr_pago();
+  },4000)
 });
 
 back.addEventListener("click", () => {

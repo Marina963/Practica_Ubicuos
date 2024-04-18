@@ -73,8 +73,13 @@ body {
     align-items: center; 
     height: 100%; /
   }
-  #boton_pago{
-    background-color:#875b96 ;
-    margin-top: 1vh;
-    border-radius: 10px;
+
+  #pagado{
+    display: none;
+    text-align: center;
+    background-color: #fff;
+    position: absolute;
+    z-index: 10;
+    height:100vh;
+    width: 100vw;
   }

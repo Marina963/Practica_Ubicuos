@@ -8,21 +8,27 @@ let div_favoritos = document.getElementById('lista_favs');
 const load = (data, products)=>{
   let prods = document.querySelectorAll('.prod_carrito');
   prods.forEach(div => div.remove());
+  let favs = document.querySelectorAll('.prod_fav');
+  favs.forEach(div => div.remove());
   lista_carrito = data;
   lista_prod = products;
   console.log(lista_prod);
   lista_carrito.forEach(element => { 
-    var new_div = document.createElement('div');
-    new_div.classList.add("prod_carrito");
+    var new_div  = document.createElement('div');
     new_div.innerHTML = `<img class="imagen_carrito" src="${element.imagen}" alt="imagen_del_producto">
                         <div class="nombre_prod">${element.nombre}</div>
                         <div class="precio_prod"> ${element.precio} €</div>`
     new_div.id = element['id'] + element['talla'];
     if(element.favorito == true){
       new_div.classList.add('favorito');
-      div_favoritos.appendChild(new_div);
+      var new_fav = document.createElement('div');
+      new_fav.innerHTML = new_div.innerHTML;
+      new_fav.id = element['id'] + "fav";
+      new_fav.classList.add('prod_fav');
+      div_favoritos.appendChild(new_fav);
       lista_favs.push(element);
     }
+    new_div.classList.add("prod_carrito");
     addListeners(new_div);
     carrito.appendChild(new_div);
 });
@@ -83,18 +89,30 @@ const remove = (elem_div) => {
 const marcar_favorito = (elem_div) => {
   if (!elem_div.classList.contains("favorito")){
     elem_div.classList.add("favorito");
+    var new_fav = document.createElement('div');
+    new_fav.innerHTML = elem_div.innerHTML;
+    new_fav.classList.add('prod_fav');
     lista_carrito.forEach(element => {
       if (elem_div.id == element['id'] + element['talla']){
         lista_carrito[(lista_carrito.indexOf(element))]["favorito"]=true;
         lista_favs.push(element);
+        new_fav.id = element['id'] + "fav";
+        div_favoritos.appendChild(new_fav);
       }
     });
   } else {
     elem_div.classList.remove("favorito");
+    elem_fav = document.getElementById
     lista_carrito.forEach(element => {
       if (elem_div.id == element['id'] + element['talla']){
         lista_carrito[(lista_carrito.indexOf(element))]["favorito"]=false;
       }
+    lista_favs.forEach(elem_fav => {
+      if (elem_div.id == elem_fav['id'] + elem_fav['talla']){
+        document.getElementById(elem_fav.id.toString() + "fav").remove();
+        lista_favs.splice((lista_favs.indexOf(element)), 1);
+      }
+    })
   });
   }
   socket.emit("SOBRESCRIBE_CARRITO", lista_carrito);
