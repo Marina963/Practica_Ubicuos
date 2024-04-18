@@ -35,12 +35,13 @@ socket.on("ELIMINAR_CARRITO_PAGADO", (data) => {
   load(data);
 }); 
 
-socket.on("ACTIVAR_DADO", ()=>{
+socket.on("ACTIVAR_DADO", (precio)=>{
+  let total = document.getElementById('total');
+  total.innerHTML = precio;
   let dado = document.getElementById('dado');
   dado.style.display = "block";
   sensorDado.start();
 });
-
 
 //Funciones para cambiar de página mediate el footer
 const cambiar_sitio = new Event("cambio_nav");
