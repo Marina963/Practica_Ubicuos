@@ -69,7 +69,7 @@ socket.on("CAJERO_CONNECTED", () => {
           "talla": talla_pref,
           "cantidad": 1,
           "precio": element.precio,
-          "favorito": "false",
+          "favorito": false,
           "estilo": element.estilo}
           socket.emit("RESPUESTA_PROD",  nuevo_prod);
 

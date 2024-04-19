@@ -32,9 +32,8 @@ const load = (data, products)=>{
       var new_fav = document.createElement('div');
       new_fav.innerHTML = new_div.innerHTML;
       new_fav.querySelector(".cantidad_prod").remove();
-      new_fav.querySelector(".talla_prod").remove();
       new_fav.querySelector(".cant_precio").style.marginLeft = "0";
-      new_fav.id = element['id'] + "fav";
+      new_fav.id = new_div.id + "fav";
       new_fav.classList.add('prod_fav');
       div_favoritos.appendChild(new_fav);
       lista_favs.push(element);
@@ -119,14 +118,13 @@ const marcar_favorito = (elem_div) => {
     new_fav.innerHTML = elem_div.querySelector(".datos_prod").innerHTML;
     new_fav.querySelector(".texto_prod").style.gridTemplateRows= "none";
     new_fav.querySelector(".cantidad_prod").remove();
-    new_fav.querySelector(".talla_prod").remove();
     new_fav.querySelector(".cant_precio").style.gridTemplateRows= "none";
     new_fav.querySelector(".cant_precio").style.marginLeft = "0";
     new_fav.classList.add('prod_fav');
     lista_carrito.forEach(element => {
       if (elem_div.id == element['id'] + element['talla']){
         lista_carrito[(lista_carrito.indexOf(element))]["favorito"]=true;
-        new_fav.id = element['id'] + "fav";
+        new_fav.id = elem_div.id + "fav";
         if (!document.getElementById(new_fav.id)) {
           div_favoritos.appendChild(new_fav);
           lista_favs.push(element);
@@ -135,14 +133,14 @@ const marcar_favorito = (elem_div) => {
     });
   } else {
     elem_div.classList.remove("favorito");
-    elem_fav = document.getElementById
+    elem_fav = document.getElementById(elem_div.id + "fav")
     lista_carrito.forEach(element => {
       if (elem_div.id == element['id'] + element['talla']){
         lista_carrito[(lista_carrito.indexOf(element))]["favorito"]=false;
       }
     lista_favs.forEach(elem_fav => {
       if (elem_div.id == elem_fav['id'] + elem_fav['talla']){
-        fav_div = document.getElementById(elem_fav["id"]+ "fav");
+        fav_div = document.getElementById(elem_div.id + "fav");
         if (fav_div) {
           fav_div.remove();
           lista_favs.splice((lista_favs.indexOf(element)), 1);
