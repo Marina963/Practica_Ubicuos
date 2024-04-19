@@ -3,7 +3,7 @@ const camara_maniqui = document.querySelector("#camara_maniqui");
 const video_ropa = document.getElementById('video_ropa');
 const div_video_ropa = document.getElementById('div_video_ropa');
 const ropa = document.getElementById('ropa');
-const lista_maniqui = document.getElementById('lista_maniqui');
+let lista_maniqui = document.getElementById('lista_maniqui');
 let videoStream_ropa;
 
 //Función para cambiar la ropa que te quieres probar
@@ -32,6 +32,8 @@ const addListeners_maniqui = (item) => {
 
 //Función para mostar las distintas prendas 
 const productos_camara = () =>{
+  let prods = document.querySelectorAll('.prod_maniqui');
+  prods.forEach(div => div.remove());
     lista_prod.forEach(element => { 
         var new_div = document.createElement('div');
         new_div.classList.add("prod_maniqui");
@@ -39,7 +41,6 @@ const productos_camara = () =>{
         new_div.id = element['id'] ;
         addListeners_maniqui(new_div);
         lista_maniqui.appendChild(new_div);
-        
     });
 }
 
