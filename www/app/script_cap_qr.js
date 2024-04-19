@@ -3,18 +3,20 @@ let canvas = document.getElementById('canvas');
 let context = canvas.getContext('2d', {willReadFrequently: true,});
 let animacion = null;
 let quaggaStarted = false; 
+let videoStream;
 
 const iniciar_grabacion = () => {
   //Promesa para poder devolver codigo qr
   return new Promise((resolve, reject) =>{
-    //Se activa la camara
+    //Se activa la camara frontal
     navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
     .then(stream => {
+      videoStream  = stream;
       video.srcObject = stream;
       video.play();
       
       video.onloadedmetadata = () => {
-        //Se llama a la funcion hasta que se encuentre la función
+        //Inicaliza la api que le los codigos de barras
         Quagga.init({
           inputStream: {
           name: "Live",
@@ -32,6 +34,7 @@ const iniciar_grabacion = () => {
           Quagga.start();
           quaggaStarted = true; 
       });
+        //Se llama a la funcion de escaneo hasta que se encuentre la función
         animacion  = setInterval(() => detectQRCode(resolve), 100);
       }
     })
@@ -72,9 +75,11 @@ const detectQRCode = (resolve) =>{
   
 //Función que apaga la campara si esta encendida
 const detenerGrabacion = () => {
-  if (video.srcObject && video.srcObject.active) {
-    video.pause();
-    video.srcObject = null;
+  if (videoStream) {
+    videoStream.getTracks().forEach(track => {
+      track.stop();
+      video.srcObject = null;
+    });
   }
   
   if (quaggaStarted) {

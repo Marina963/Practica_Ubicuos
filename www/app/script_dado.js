@@ -44,12 +44,16 @@ const rollDice = (total) =>{
     }, tiempo)
 }
 
-boton_pago.addEventListener('click', function(e){
-    e.preventDefault();
+const pagar = () =>{
+    
     socket.emit("PAGAR");
     navigator.vibrate(1000);
     dado.style.display = "none";
     sacude.innerHTML = "¡Sacude el movil para tirar el dado y conseguir un descuento!";
+}
+boton_pago.addEventListener('click', function(e){
+    e.preventDefault();
+    pagar();
 })
 
 sensorDado.addEventListener("reading", () => {

@@ -1,17 +1,21 @@
 let maniqui = document.querySelector("#maniqui");
 let model;
+
+//SE crean las varibles del modelo ·D
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 const renderer = new THREE.WebGLRenderer({ alpha: true });
 const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
 directionalLight.position.set(1, 1, 1).normalize();
 const sensorAbs = new AbsoluteOrientationSensor({ frequency: 20, referenceFrame: "device" });
+
+//FUncion que muestra el modelo ·D
 const modelo= () =>{ 
     renderer.setSize(window.innerWidth, window.innerHeight);
     maniqui.appendChild(renderer.domElement);
     scene.add(directionalLight);
 
-   
+   //Se ccarga el modelo
     let loader = new THREE.GLTFLoader();
     loader.load(
         '../modelo_3d/maniqui.glb',
@@ -41,12 +45,13 @@ const modelo= () =>{
     sensorAbs.start();  
 }
 
+//Función que renderiza el modelo
 const animate = () => {
     requestAnimationFrame(animate);
     renderer.render(scene, camera);
 }
 
-
+//funcio que detecta si se mueve el movil a la derecha o la izquierda para rotar el maniqui
 sensorAbs.addEventListener("reading", () => {
     let posicionX = sensorAbs.quaternion[0];
     let posicionY = sensorAbs.quaternion[1];

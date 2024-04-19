@@ -97,7 +97,12 @@ socket.on("CAJERO_CONNECTED", () => {
         console.log(err);
         return;
       }
-      socketCajero.emit("RESPUESTA_LISTA_PAGO",  JSON.parse(data));
+      if(JSON.parse(data).length !== 0){
+        socketCajero.emit("RESPUESTA_LISTA_PAGO",  JSON.parse(data));
+      }
+      else{
+        socketCajero.emit("RESPUESTA_LISTA_PAGO",  0);
+      }
     });
   });
 

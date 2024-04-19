@@ -81,10 +81,14 @@ socket.on("connect", () => {
     console.log("new pointer");
 
     socket.on("RESPUESTA_LISTA_PAGO", (data) => {
-      pago.style.display = "block";
-      p_caja.style.display = "none";
-      code_video.style.display = "none";
-      load_pago(data);
+      if(data === 0){
+        alert("ningún producto seleccionado")
+      } else {
+        pago.style.display = "block";
+        p_caja.style.display = "none";
+        code_video.style.display = "none";
+        load_pago(data);
+      }
     });
 
     socket.on("HAY_PRODUCTOS_DISPONIBLES", ()=>{
