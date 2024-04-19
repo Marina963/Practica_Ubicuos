@@ -301,3 +301,24 @@ footer div{
     margin: auto;
 }
 
+/*-----------------Estilo del perfil----------------*/
+#perfil{
+    text-align: center;
+    font-size: 5vh;
+}
+
+#perfil > button{
+    background-color: #ecd0f7;
+    font-size: 4vh;
+    width: 7vh;
+    border-radius: 25%;
+    border: none;
+}
+
+#nombre_usuario{
+    color:#4c4c4c;
+}
+
+#talla_pref{
+    color:#4c4c4c;
+}

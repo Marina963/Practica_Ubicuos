@@ -122,6 +122,22 @@ socket.on("CAJERO_CONNECTED", () => {
     });
   });
 
+  socket.on("CAMBIO_TALLA", (talla) =>{
+    fs.readFile("./www/json/perfil.json", function(err, perfil) {
+      if(err) {
+        console.log(err);
+        return;
+      }
+      perfil = JSON.parse(perfil);
+      perfil[0]["talla"] = talla;
+      fs.writeFile("./www/json/perfil.json", JSON.stringify(perfil), (error) => {
+        if(error){
+          reject(error);
+        }
+      });
+    });
+  });
+
   socket.on("ACTUALIZA_FAV", (lista)=> {
     fs.writeFile("./www/json/favoritos.json", JSON.stringify(lista), (error) => {
       if(error){
