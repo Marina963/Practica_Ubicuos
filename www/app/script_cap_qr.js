@@ -61,9 +61,10 @@ const detectQRCode = (resolve) =>{
       // Si no detecta un QR, intenta detectar un código de barras
       Quagga.onDetected(function(result) {
         const code = result.codeResult.code;
-        console.log('Código de barras detectado:', code);
-        Quagga.stop();
+        //console.log('Código de barras detectado:', code);
+        //Quagga.stop();
         quaggaStarted = false; 
+        setInterval(animacion);
         resolve(code);
         detenerGrabacion();
       });
@@ -78,8 +79,8 @@ const detenerGrabacion = () => {
   if (videoStream) {
     videoStream.getTracks().forEach(track => {
       track.stop();
-      video.srcObject = null;
     });
+    video.srcObject = null;
   }
   
   if (quaggaStarted) {
