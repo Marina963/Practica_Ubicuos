@@ -45,8 +45,9 @@ const load = (data, products)=>{
 
 const add = (id) => {
   var existe = 0;
+  var talla_pref = document.getElementById('talla_pref').textContent;
   lista_carrito.forEach(element => {
-    if(element.id == id) {
+    if(element.id == id && element.talla == talla_pref) {
       element.cantidad += 1;
       elem_div = document.getElementById(element.id + element.talla);
       cant_prod_div = elem_div.querySelector(".cantidad_prod");
@@ -57,7 +58,7 @@ const add = (id) => {
     } 
   });
   if (existe == 0){
-    socket.emit("DATOS_PROD", id);
+    socket.emit("DATOS_PROD", id, talla_pref);
   }
 }
 
@@ -67,15 +68,15 @@ const new_product = (new_data) => {
   var new_div = document.createElement('div');
   new_div.classList.add("prod_carrito");
 
-  new_div.innerHTML =   `<img class="imagen_carrito" src="${element.imagen}" alt="imagen_del_producto">
+  new_div.innerHTML =   `<img class="imagen_carrito" src="${new_data.imagen}" alt="imagen_del_producto">
                         <div class="texto_prod">
                           <div class="nombre_talla">
-                            <div class="nombre_prod">${element.nombre}</div>
-                            <div class="talla_prod">Talla:  ${element.talla}</div>
+                            <div class="nombre_prod">${new_data.nombre}</div>
+                            <div class="talla_prod">Talla:  ${new_data.talla}</div>
                           </div>
                           <div class="cant_precio">
-                            <div class="cantidad_prod">Cantidad:  ${element.cantidad} ud</div>
-                            <div class="precio_prod">Precio:  ${element.precio} €/ud</div>
+                            <div class="cantidad_prod">Cantidad:  ${new_data.cantidad} ud</div>
+                            <div class="precio_prod">Precio:  ${new_data.precio} €/ud</div>
                           </div>
                         </div>`
   new_div.id = new_data['id'] + new_data['talla'];

@@ -12,6 +12,7 @@ socket.on("ACK_CONNECTION", () => {
 window.addEventListener("load", () =>{
   act_pag_armario();
   socket.emit("PEDIR_LISTA");
+  socket.emit("PEDIR_PERFIL");
   voz();
 });
 
@@ -43,6 +44,13 @@ socket.on("ACTIVAR_DADO", (precio)=>{
   sensorDado.start();
 });
 
+socket.on("RESPUESTA_PERFIL", (perfil)=>{
+  let nombre_usuario = document.getElementById('nombre_usuario');
+  nombre_usuario.innerHTML = perfil[0]["usuario"];
+  let talla_pref = document.getElementById('talla_pref');
+  talla_pref.innerHTML = perfil[0]["talla"];
+})
+
 //Funciones para cambiar de página mediate el footer
 const cambiar_sitio = new Event("cambio_nav");
 
@@ -58,6 +66,6 @@ footer_armario.addEventListener("touchend", () => {
 footer_esc_ropa.addEventListener("touchend", () => {
   act_pag_esc_ropa();
 });
-footer_ubicacion.addEventListener("touchend", () => {
-  act_pag_ubicacion();
+footer_perfil.addEventListener("touchend", () => {
+  act_pag_perfil();
 });
