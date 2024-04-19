@@ -68,21 +68,46 @@ footer div{
     height: 75vh;
     overflow-y: scroll;
 }
+#armario > ::-webkit-scrollbar {
+    width: 4vw;
+ }
+
+ #armario > ::-webkit-scrollbar {
+    width: 4vw;
+ }
+
+/* Track */
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    background: #ceb0da; 
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+::-webkit-scrollbar-thumb:window-inactive {
+	background: rgba(255, 255, 255, 0.4); 
+}
 
 /*Estilos para cada producto del carrito*/
 .prod_carrito {
-    width: 100vw; 
+    width: 94vw; 
     height: auto;
     position: relative;
     background-color: #ecd0f7;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 5% 0%;
-    margin-bottom: 2vh;
-    font-size: 20px;
+    margin-bottom: 3vh;
     color: #333;
     display: grid;
     grid-template-columns: 4fr 9fr;
+    overflow-y: inherit;
 }
 
 .imagen_carrito{ 
@@ -134,7 +159,6 @@ footer div{
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 4% 5%;
-    font-size: 20px;
     color: #333;
     z-index: 2;
     display: grid;
@@ -151,6 +175,7 @@ footer div{
 
 /*Estilo para las recomendaciones de un producto*/
 .seccion_recomendados {
+    font-size: 2.9vh;
     display: grid;
     grid-template-rows: 1fr 5fr;
     border-top:  solid #493e4f;
@@ -208,7 +233,6 @@ footer div{
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 5% 0%;
     margin-bottom: 2vh;
-    font-size: 20px;
     color: #333;
     display: grid;
     grid-template-columns: 4fr 9fr;

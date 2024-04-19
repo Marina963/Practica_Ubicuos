@@ -81,11 +81,14 @@ const new_product = (new_data) => {
                             <div class="precio_prod">Precio:  ${new_data.precio} €/ud</div>
                           </div>
                         </div>`
-  new_div.id = new_data['id'] + new_data['talla'];
-
-  carrito.appendChild(new_div);
-  addListeners(new_div);
-  lista_carrito.push(new_data);
+  //Control de errores
+  let exist_div = document.getElementById(new_data['id'] + new_data['talla']);
+  if (!exist_div) {
+    new_div.id = new_data['id'] + new_data['talla'];
+    carrito.appendChild(new_div);
+    addListeners(new_div);
+    lista_carrito.push(new_data);
+  }
 }
 
 const remove = (elem_div) => {
