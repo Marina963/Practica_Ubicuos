@@ -128,7 +128,7 @@ footer div{
     width: 100%; 
     height: 100%;
     position: absolute;
-    background-color: #ae76c4;
+    background-color: #ceb0da;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 4% 5%;
@@ -161,9 +161,11 @@ footer div{
 }
 
 .recomendacion{
+    height: 90%;
     position: relative;
     z-index: 3;
     border: thick double #333;
+    border-radius: 5%;
     display: grid;
     grid-template-rows: 5fr 1fr 1fr;
     background-color: #ecd0f7;
@@ -182,7 +184,7 @@ footer div{
 
 /*-----------------Estilo de favoritos------------------*/
 .favorito {
-    background-color: #ef7ea4;
+    background-color: #ed8dad;
 }
 
 #lista_favs {
