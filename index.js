@@ -118,6 +118,10 @@ socket.on("CAJERO_CONNECTED", () => {
     socketCajero.emit("MENSAJE_PAGO");
   });
 
+  socket.on("RETORNO", ()=>{
+    socketMovil.emit("RETORNO_DADO");
+  });
+
 // Actualizar json
   socket.on("SOBRESCRIBE_CARRITO", (lista)=> {
     fs.writeFile("./www/json/carrito.json", JSON.stringify(lista), (error) => {

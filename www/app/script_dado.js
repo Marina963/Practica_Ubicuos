@@ -34,7 +34,6 @@ const rollDice = (total) =>{
     setTimeout(()=>{
         dice.dataset.face = diceVal;
         total = document.getElementById('total').textContent;
-        console.log(total);
         total = total - total*((diceVal*5)/100);
         sacude.innerHTML = "¡Felicidades! Has ganado un descuento del " + diceVal*5 + "%. Tu nuevo total es: " + total + "€";
         boton_pago.style.display = "inline-block";
@@ -45,11 +44,11 @@ const rollDice = (total) =>{
 }
 
 const pagar = () =>{
-    
     socket.emit("PAGAR");
     navigator.vibrate(1000);
     dado.style.display = "none";
     sacude.innerHTML = "¡Sacude el movil para tirar el dado y conseguir un descuento!";
+    boton_pago.style.display = "none";
 }
 boton_pago.addEventListener('click', function(e){
     e.preventDefault();
