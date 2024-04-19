@@ -5,7 +5,7 @@ const recognition = new SpeechRecognition();
 const speechRecognitionList = new SpeechGrammarList();
 
 //Gramatica de reconocimiento de voz
-const grammar ="#JSGF V1.0; grammar colors; public <accion> = ordenar | armario | maniqui | perfil | favoritos | escaner| camara ;";
+const grammar ="#JSGF V1.0; grammar colors; public <accion> = ordenar | armario | maniqui | perfil | favoritos | escaner| probador | pagar;";
 
 
 speechRecognitionList.addFromString(grammar, 1);
@@ -24,6 +24,7 @@ const voz = () =>{
 //Reconoce las palabras y llama a las funciones corresponidentes
 recognition.onresult = function(event) {
   const result = event.results[0][0].transcript.toLowerCase();
+
   switch (result) {
     case "ordenar":
       if (armario.style.display === 'block') {
@@ -45,16 +46,16 @@ recognition.onresult = function(event) {
     case "perfil":
       act_pag_perfil();
       break;
-    case "cámara":
+    case "probador":
       act_pag_maniqui();
-      quitarModelo();
-      div_video_ropa.style.display = "block";
-      maniqui_camara.style.display = "none";
-      iniciar_grabacion_ropa();
-      productos_camara();
+      cambiar_probador();
       break;
+    case "pagar":
+      if(dado.style.display == "block"){
+        pagar();
+      }
+      
     default:
-      console.log("Comando no reconocido.");
       break;
 
   };

@@ -43,13 +43,18 @@ const productos_camara = () =>{
     });
 }
 
+const cambiar_probador = () =>{
+  quitarModelo();
+  div_video_ropa.style.display = "block";
+  maniqui_camara.style.display = "none";
+  iniciar_grabacion_ropa();
+  productos_camara();
+}
+
+
 //Funciones para cambiar entre la pesta de maniqui y la de probador
 maniqui_camara.addEventListener("touchend", ()=>{
-    quitarModelo();
-    div_video_ropa.style.display = "block";
-    maniqui_camara.style.display = "none";
-    iniciar_grabacion_ropa();
-    productos_camara();
+   cambiar_probador();
 })
 camara_maniqui.addEventListener("touchend", ()=>{
     modelo();

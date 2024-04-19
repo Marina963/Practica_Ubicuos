@@ -69,7 +69,7 @@ socket.on("CAJERO_CONNECTED", () => {
           "talla": talla_pref,
           "cantidad": 1,
           "precio": element.precio,
-          "favorito": false,
+          "favorito": "false",
           "estilo": element.estilo}
           socket.emit("RESPUESTA_PROD",  nuevo_prod);
 
@@ -97,7 +97,12 @@ socket.on("CAJERO_CONNECTED", () => {
         console.log(err);
         return;
       }
-      socketCajero.emit("RESPUESTA_LISTA_PAGO",  JSON.parse(data));
+      if(JSON.parse(data).length !== 0){
+        socketCajero.emit("RESPUESTA_LISTA_PAGO",  JSON.parse(data));
+      }
+      else{
+        socketCajero.emit("RESPUESTA_LISTA_PAGO",  0);
+      }
     });
   });
 
