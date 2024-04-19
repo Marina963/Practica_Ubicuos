@@ -53,7 +53,7 @@ const add = (id) => {
       element.cantidad += 1;
       elem_div = document.getElementById(element.id + element.talla);
       cant_prod_div = elem_div.querySelector(".cantidad_prod");
-      cant_prod_div.innerHTML = element.cantidad + " ud";
+      cant_prod_div.innerHTML = "Cantidad: " + element.cantidad + " ud";
       socket.emit("SOBRESCRIBE_CARRITO", lista_carrito);
       existe = 1;
       return;
