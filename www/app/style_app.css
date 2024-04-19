@@ -8,10 +8,12 @@ body {
 html,body {
     height: auto;
     width:  100vw;
+    touch-action: manipulation;
+    overflow: hidden;
 }
 
 h1{
-    left:1vh;
+    left:5vw;
 }
 header{
     top:0;
@@ -264,7 +266,7 @@ footer div{
 #ropa{
     z-index: 2;
     position: absolute;
-    top: 10vh;
+    top: 13vh;
     right: 13vh;
     height: 25vh;
 
@@ -275,24 +277,26 @@ footer div{
     position: absolute;
     bottom: 7vh;
     left: 0;
-    background-color: rgb(196, 134, 227);
-    height: 20vh;
-    width: 99vw;
+    background-color: rgb(204, 164, 224);
+    height: 17vh;
+    width: 100vw;
 
     display: inline-grid; 
-    grid-template-columns: repeat(auto-fill, minmax(39vw, 1fr)); 
+    grid-template-columns: repeat(auto-fill, minmax(30vw, 1fr)); 
+    
 }
 
 /*Cada div de cada elem*/
 .prod_maniqui{
-    width: 35vw; 
-    height: 35vw;
+    width: 30vw; 
+    height: 30vw;
     margin: auto;
     position: relative;
     background-color: rgb(236, 207, 247);
-    border-radius: 8px;
+    border-radius: 30px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     display: grid; 
+    
 }
 
 /*Imagen*/

@@ -4,7 +4,9 @@ var SpeechGrammarList = window.SpeechGrammarList || webkitSpeechGrammarList;
 const recognition = new SpeechRecognition();
 const speechRecognitionList = new SpeechGrammarList();
 
-const grammar ="#JSGF V1.0; grammar colors; public <accion> = ordenar | armario | maniqui | perfil | favoritos | escanerar productos | parar   ;";
+//Gramatica de reconocimiento de voz
+const grammar ="#JSGF V1.0; grammar colors; public <accion> = ordenar | armario | maniqui | perfil | favoritos | escaner| camara ;";
+
 
 speechRecognitionList.addFromString(grammar, 1);
 recognition.grammars = speechRecognitionList;
@@ -14,17 +16,14 @@ recognition.interimResults = false;
 recognition.maxAlternatives = 1;
 
 
-
+//Inicia reconocomiento de voz
 const voz = () =>{
   recognition.start();
-  //console.log("Listo para recibir un comando de color.");
 } 
 
+//Reconoce las palabras y llama a las funciones corresponidentes
 recognition.onresult = function(event) {
-  const result = event.results[0][0].transcript;
-  console.log(`Resultado: ${result}.`);
-  console.log(`Confianza: ${event.results[0][0].confidence}`);
-
+  const result = event.results[0][0].transcript.toLowerCase();
   switch (result) {
     case "ordenar":
       if (armario.style.display === 'block') {
@@ -40,14 +39,19 @@ recognition.onresult = function(event) {
     case "favoritos":
       act_pag_favoritos();
       break;
-    case "escanear":
+    case "escáner":
       act_pag_esc_ropa();
       break;
     case "perfil":
       act_pag_perfil();
       break;
-    case "parar":
-      recognition.abort();
+    case "cámara":
+      act_pag_maniqui();
+      quitarModelo();
+      div_video_ropa.style.display = "block";
+      maniqui_camara.style.display = "none";
+      iniciar_grabacion_ropa();
+      productos_camara();
       break;
     default:
       console.log("Comando no reconocido.");
@@ -55,21 +59,18 @@ recognition.onresult = function(event) {
 
   };
 };
+
+//Funcione para detectar cuando termina de hablar y si termina volver iniciar el reconocimiento de voz
 recognition.onspeechend = function() {
-  //console.log("speechend");
   recognition.stop();
 };
 
-/* Para habilitar reconocimiento continuo */
 recognition.onend = function() {
-  //console.log("end");
   recognition.start();
 }
 
 recognition.onnomatch = function() {
-  //console.log("No he reconocido el color");
   recognition.stop();
-  //btnSpeech.disabled = false;
 };
 
 recognition.onerror = function(event) {

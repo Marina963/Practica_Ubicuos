@@ -9,6 +9,7 @@ socket.on("ACK_CONNECTION", () => {
   console.log("ack_movil");
 });
 
+
 window.addEventListener("load", () =>{
   act_pag_armario();
   socket.emit("PEDIR_LISTA");
