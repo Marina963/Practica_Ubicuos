@@ -7,8 +7,8 @@ const footer_armario = document.querySelector("#footer_armario");
 const armario = document.querySelector("#armario");
 const footer_esc_ropa = document.querySelector("#footer_esc_ropa");
 const esc_ropa = document.querySelector("#esc_ropa");
-const footer_ubicacion = document.querySelector("#footer_ubicacion");
-const ubicacion = document.querySelector("#ubicacion");
+const footer_perfil = document.querySelector("#footer_perfil");
+const perfil = document.querySelector("#perfil");
 
 
 //Funciones para poder cambiar de paginas en la aplicación
@@ -17,7 +17,7 @@ const act_pag_favoritos = () => {
   maniqui.style.display = 'none';
   armario.style.display = 'none';
   esc_ropa.style.display = 'none';
-  ubicacion.style.display = 'none';
+  perfil.style.display = 'none';
   document.dispatchEvent(cambiar_sitio);
   detenerGrabacion();
   detenerGrabacion_ropa();
@@ -29,7 +29,7 @@ const act_pag_maniqui= () => {
   maniqui.style.display = 'block';
   armario.style.display = 'none';
   esc_ropa.style.display = 'none';
-  ubicacion.style.display = 'none';
+  perfil.style.display = 'none';
 
   document.dispatchEvent(cambiar_sitio);
   detenerGrabacion();
@@ -44,7 +44,7 @@ const act_pag_armario= () => {
   maniqui.style.display = 'none';
   armario.style.display = 'block';
   esc_ropa.style.display = 'none';
-  ubicacion.style.display = 'none';
+  perfil.style.display = 'none';
   detenerGrabacion();
   detenerGrabacion_ropa();
   quitarModelo();
@@ -54,7 +54,7 @@ const act_pag_esc_ropa= () => {
   maniqui.style.display = 'none';
   armario.style.display = 'none';
   esc_ropa.style.display = 'block';
-  ubicacion.style.display = 'none';
+  perfil.style.display = 'none';
   document.dispatchEvent(cambiar_sitio);
   detenerGrabacion_ropa();
   quitarModelo();
@@ -75,12 +75,12 @@ const act_pag_esc_ropa= () => {
   });
    
 }
-const act_pag_ubicacion= () => {
+const act_pag_perfil= () => {
   favoritos.style.display = 'none';
   maniqui.style.display = 'none';
   armario.style.display = 'none';
   esc_ropa.style.display = 'none';
-  ubicacion.style.display = 'block';
+  perfil.style.display = 'block';
   document.dispatchEvent(cambiar_sitio);
   detenerGrabacion();
   detenerGrabacion_ropa();

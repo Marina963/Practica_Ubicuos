@@ -43,8 +43,16 @@
         <video id="video"  autoplay></video>
         <canvas id="canvas" style="display:none;"></canvas>        
     </div>
-    <div id="ubicacion" class="pag_principal">
-        <p>Perfil</p>
+    <div id="perfil" class="pag_principal">
+        <p>Usuario:</p>
+        <p id="nombre_usuario"></p>
+        <p>Talla preferida:</p>
+        <p id="talla_pref"></p>
+        <button id="boton_XS">XS</button>
+        <button id="boton_S">S</button>
+        <button id="boton_M">M</button>
+        <button id="boton_L">L</button>
+        <button id="boton_XL">XL</button>
     </div>
     <div id="dado">
         <p id="sacude">¡Sacude el movil para tirar el dado y conseguir un descuento!</p>
@@ -102,11 +110,12 @@
         <div id="footer_esc_ropa">
             <img class="icono" src="../images/scanner.png" scanner.pngalt="icono">
         </div>
-        <div id="footer_ubicacion">
+        <div id="footer_perfil">
             <img class="icono" src="../images/usuario.png" alt="icono">
         </div>
     </footer>
     <script src="script_mostrarprod.js"></script>
+    <script src="script_perfil.js"></script>
     <script src="shake.js"> </script>
     <script src="script_remove.js"> </script>
     <script src="script_carrito.js"> </script>

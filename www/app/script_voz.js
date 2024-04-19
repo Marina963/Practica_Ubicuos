@@ -43,7 +43,7 @@ recognition.onresult = function(event) {
       act_pag_esc_ropa();
       break;
     case "perfil":
-      act_pag_ubicacion();
+      act_pag_perfil();
       break;
     case "cámara":
       act_pag_maniqui();
