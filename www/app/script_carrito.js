@@ -48,8 +48,9 @@ const load = (data, products)=>{
 
 const add = (id) => {
   var existe = 0;
+  var talla_pref = document.getElementById('talla_pref').textContent;
   lista_carrito.forEach(element => {
-    if(element.id == id) {
+    if(element.id == id && element.talla == talla_pref) {
       element.cantidad += 1;
       elem_div = document.getElementById(element.id + element.talla);
       cant_prod_div = elem_div.querySelector(".cantidad_prod");
@@ -60,7 +61,7 @@ const add = (id) => {
     } 
   });
   if (existe == 0){
-    socket.emit("DATOS_PROD", id);
+    socket.emit("DATOS_PROD", id, talla_pref);
   }
 }
 

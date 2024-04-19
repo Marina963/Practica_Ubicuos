@@ -44,7 +44,16 @@ socket.on("CAJERO_CONNECTED", () => {
     });
   });
 
-  socket.on("DATOS_PROD", (id) => {
+  socket.on("PEDIR_PERFIL", () =>{
+    fs.readFile("./www/json/perfil.json", function(err, perfil) {
+      if(err) {
+        console.log(err);
+        return;
+      }
+      socket.emit("RESPUESTA_PERFIL",  JSON.parse(perfil));})
+  });
+
+  socket.on("DATOS_PROD", (id, talla_pref) => {
     console.log("peticion producto");
     fs.readFile("./www/json/productos.json", function(err, lista_productos) {
       if(err) {
@@ -57,7 +66,7 @@ socket.on("CAJERO_CONNECTED", () => {
           let nuevo_prod = {"id": parseInt(id),
           "nombre": element.nombre,
           "imagen": element.imagen,
-          "talla": "S",
+          "talla": talla_pref,
           "cantidad": 1,
           "precio": element.precio,
           "favorito": "false",
