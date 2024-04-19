@@ -31,6 +31,9 @@ const load = (data, products)=>{
       new_div.classList.add('favorito');
       var new_fav = document.createElement('div');
       new_fav.innerHTML = new_div.innerHTML;
+      new_fav.querySelector(".cantidad_prod").remove();
+      new_fav.querySelector(".talla_prod").remove();
+      new_fav.querySelector(".cant_precio").style.marginLeft = "0";
       new_fav.id = element['id'] + "fav";
       new_fav.classList.add('prod_fav');
       div_favoritos.appendChild(new_fav);
@@ -67,15 +70,15 @@ const new_product = (new_data) => {
   var new_div = document.createElement('div');
   new_div.classList.add("prod_carrito");
 
-  new_div.innerHTML =   `<img class="imagen_carrito" src="${element.imagen}" alt="imagen_del_producto">
+  new_div.innerHTML =   `<img class="imagen_carrito" src="${new_data.imagen}" alt="imagen_del_producto">
                         <div class="texto_prod">
                           <div class="nombre_talla">
-                            <div class="nombre_prod">${element.nombre}</div>
-                            <div class="talla_prod">Talla:  ${element.talla}</div>
+                            <div class="nombre_prod">${new_data.nombre}</div>
+                            <div class="talla_prod">Talla:  ${new_data.talla}</div>
                           </div>
                           <div class="cant_precio">
-                            <div class="cantidad_prod">Cantidad:  ${element.cantidad} ud</div>
-                            <div class="precio_prod">Precio:  ${element.precio} €/ud</div>
+                            <div class="cantidad_prod">Cantidad:  ${new_data.cantidad} ud</div>
+                            <div class="precio_prod">Precio:  ${new_data.precio} €/ud</div>
                           </div>
                         </div>`
   new_div.id = new_data['id'] + new_data['talla'];
@@ -112,14 +115,21 @@ const marcar_favorito = (elem_div) => {
   if (!elem_div.classList.contains("favorito")){
     elem_div.classList.add("favorito");
     var new_fav = document.createElement('div');
-    new_fav.innerHTML = elem_div.innerHTML;
+    new_fav.innerHTML = elem_div.querySelector(".datos_prod").innerHTML;
+    new_fav.querySelector(".texto_prod").style.gridTemplateRows= "none";
+    new_fav.querySelector(".cantidad_prod").remove();
+    new_fav.querySelector(".talla_prod").remove();
+    new_fav.querySelector(".cant_precio").style.gridTemplateRows= "none";
+    new_fav.querySelector(".cant_precio").style.marginLeft = "0";
     new_fav.classList.add('prod_fav');
     lista_carrito.forEach(element => {
       if (elem_div.id == element['id'] + element['talla']){
         lista_carrito[(lista_carrito.indexOf(element))]["favorito"]=true;
-        lista_favs.push(element);
         new_fav.id = element['id'] + "fav";
-        div_favoritos.appendChild(new_fav);
+        if (!document.getElementById(new_fav.id)) {
+          div_favoritos.appendChild(new_fav);
+          lista_favs.push(element);
+        }
       }
     });
   } else {
@@ -131,8 +141,11 @@ const marcar_favorito = (elem_div) => {
       }
     lista_favs.forEach(elem_fav => {
       if (elem_div.id == elem_fav['id'] + elem_fav['talla']){
-        document.getElementById(elem_fav.id.toString() + "fav").remove();
-        lista_favs.splice((lista_favs.indexOf(element)), 1);
+        fav_div = document.getElementById(elem_fav["id"]+ "fav");
+        if (fav_div) {
+          fav_div.remove();
+          lista_favs.splice((lista_favs.indexOf(element)), 1);
+        }
       }
     })
   });

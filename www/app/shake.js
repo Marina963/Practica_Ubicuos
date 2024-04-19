@@ -12,7 +12,8 @@ const options = { threshold: 10};
 
 if ('Accelerometer' in window) {
     try {
-        sensorAcc.addEventListener("reading", () => { 
+        sensorAcc.addEventListener("reading", () => { //})
+        //acc.onreading = () => {
             let lastX = 0;
             let lastY = 0;
             let lastZ = 0;
@@ -24,8 +25,8 @@ if ('Accelerometer' in window) {
             ((deltaX > options.threshold) && (deltaZ > options.threshold)) ||
             ((deltaY > options.threshold) && (deltaZ > options.threshold)) ) {
             if (!shaking && ((Date.now()-lastTime) > 1000)) {
-                console.log('shake');
                 shaking = true;
+                console.log('shake');
                 if (timer) {
                     clearTimeout(timer);
                     timer = null;
@@ -37,6 +38,9 @@ if ('Accelerometer' in window) {
         } else {
             if (shaking) {
             shaking = false;
+            /*timer = setTimeout(() => {
+                console.log("stop");
+            }, 500);*/
             }
         }
 
