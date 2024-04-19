@@ -23,9 +23,11 @@
 #dado > button{
     margin-top: 10%;
     font-size: 6vh;
-    background-color: #d589f3;
+    background-color: #EBDCF0;
     border-color:#eee0f4;
     display: none;
+    padding: 1vw;
+    border-radius: 1vh;
 }
 
 .dice-container {
@@ -50,7 +52,7 @@
     height:100%;
     border: 1px solid #eee0f4;
     border-radius: 0.625vh;
-    background-color: #d589f3;
+    background-color: #EBDCF0;
     backface-visibility: hidden;
 }
 

@@ -46,6 +46,7 @@ const load_pago = (data)=>{
                           </div>
                           <div>${element.nombre}</div>
                           <div class="precio"> ${element.precio} €</div>
+                          <div >Talla:  ${element.talla} </div>
                           <div> ${element.cantidad} u</div>`
     new_div.id = "prod_" + element['id'];
     carrito_pago.appendChild(new_div);
