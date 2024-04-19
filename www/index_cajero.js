@@ -118,5 +118,6 @@ socket.on("MENSAJE_PAGO", () =>{
 });
 
 back.addEventListener("click", () => {
+  socket.emit("RETORNO");
   mostar_qr_pago();
 })

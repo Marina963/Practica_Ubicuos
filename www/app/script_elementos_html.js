@@ -18,6 +18,13 @@ const act_pag_favoritos = () => {
   armario.style.display = 'none';
   esc_ropa.style.display = 'none';
   perfil.style.display = 'none';
+
+  footer_favoritos.style.backgroundColor = "#c7b8cb";
+  footer_maniqui.style.backgroundColor = "#EBDCF0";
+  footer_armario.style.backgroundColor = "#EBDCF0";
+  footer_esc_ropa.style.backgroundColor = "#EBDCF0";
+  footer_perfil.style.backgroundColor = "#EBDCF0";
+
   document.dispatchEvent(cambiar_sitio);
   detenerGrabacion();
   detenerGrabacion_ropa();
@@ -30,6 +37,12 @@ const act_pag_maniqui= () => {
   armario.style.display = 'none';
   esc_ropa.style.display = 'none';
   perfil.style.display = 'none';
+  
+  footer_favoritos.style.backgroundColor ="#EBDCF0";
+  footer_maniqui.style.backgroundColor = "#c7b8cb";
+  footer_armario.style.backgroundColor = "#EBDCF0";
+  footer_esc_ropa.style.backgroundColor = "#EBDCF0";
+  footer_perfil.style.backgroundColor = "#EBDCF0";
 
   document.dispatchEvent(cambiar_sitio);
   detenerGrabacion();
@@ -45,6 +58,13 @@ const act_pag_armario= () => {
   armario.style.display = 'block';
   esc_ropa.style.display = 'none';
   perfil.style.display = 'none';
+
+  footer_favoritos.style.backgroundColor = "#EBDCF0";
+  footer_maniqui.style.backgroundColor = "#EBDCF0";
+  footer_armario.style.backgroundColor = "#c7b8cb"
+  footer_esc_ropa.style.backgroundColor = "#EBDCF0";
+  footer_perfil.style.backgroundColor = "#EBDCF0";
+
   detenerGrabacion();
   detenerGrabacion_ropa();
   quitarModelo();
@@ -55,6 +75,13 @@ const act_pag_esc_ropa= () => {
   armario.style.display = 'none';
   esc_ropa.style.display = 'block';
   perfil.style.display = 'none';
+
+  footer_favoritos.style.backgroundColor = "#EBDCF0";
+  footer_maniqui.style.backgroundColor = "#EBDCF0";
+  footer_armario.style.backgroundColor = "#EBDCF0";
+  footer_esc_ropa.style.backgroundColor = "#c7b8cb";
+  footer_perfil.style.backgroundColor = "#EBDCF0";
+
   document.dispatchEvent(cambiar_sitio);
   detenerGrabacion_ropa();
   quitarModelo();
@@ -81,6 +108,13 @@ const act_pag_perfil= () => {
   armario.style.display = 'none';
   esc_ropa.style.display = 'none';
   perfil.style.display = 'block';
+
+  footer_favoritos.style.backgroundColor = "#EBDCF0";
+  footer_maniqui.style.backgroundColor = "#EBDCF0";
+  footer_armario.style.backgroundColor = "#EBDCF0";
+  footer_esc_ropa.style.backgroundColor = "#EBDCF0";
+  footer_perfil.style.backgroundColor = "#c7b8cb";
+
   document.dispatchEvent(cambiar_sitio);
   detenerGrabacion();
   detenerGrabacion_ropa();

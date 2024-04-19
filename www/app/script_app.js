@@ -45,6 +45,16 @@ socket.on("ACTIVAR_DADO", (precio)=>{
   sensorDado.start();
 });
 
+socket.on("RETORNO_DADO", ()=>{
+  let dado = document.getElementById('dado');
+  dado.style.display = "none";
+  let sacude = document.getElementById('sacude');
+  sacude.innerHTML = "¡Sacude el movil para tirar el dado y conseguir un descuento!";
+  let boton_pago = document.getElementById('boton_pago');
+  boton_pago.style.display = "none";
+  sensorDado.stop();
+});
+
 socket.on("RESPUESTA_PERFIL", (perfil)=>{
   let nombre_usuario = document.getElementById('nombre_usuario');
   nombre_usuario.innerHTML = perfil[0]["usuario"];

@@ -118,12 +118,32 @@ socket.on("CAJERO_CONNECTED", () => {
     socketCajero.emit("MENSAJE_PAGO");
   });
 
+  socket.on("RETORNO", ()=>{
+    socketMovil.emit("RETORNO_DADO");
+  });
+
 // Actualizar json
   socket.on("SOBRESCRIBE_CARRITO", (lista)=> {
     fs.writeFile("./www/json/carrito.json", JSON.stringify(lista), (error) => {
       if(error){
         reject(error);
       }
+    });
+  });
+
+  socket.on("CAMBIO_TALLA", (talla) =>{
+    fs.readFile("./www/json/perfil.json", function(err, perfil) {
+      if(err) {
+        console.log(err);
+        return;
+      }
+      perfil = JSON.parse(perfil);
+      perfil[0]["talla"] = talla;
+      fs.writeFile("./www/json/perfil.json", JSON.stringify(perfil), (error) => {
+        if(error){
+          reject(error);
+        }
+      });
     });
   });
 

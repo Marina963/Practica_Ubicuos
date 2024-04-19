@@ -8,7 +8,7 @@ sensorABS.addEventListener("reading", () => {
   posicion = sensorABS.quaternion;
   if (posicion[3] <= 0.1 && posicion[2] <= 0.1){
     if (cont == 0){
-      navigator.vibrate(500);
+      navigator.vibrate(200);
     }
     cont += 1;
     console.log("mirando abajo");
