@@ -19,7 +19,7 @@ const act_pag_favoritos = () => {
   esc_ropa.style.display = 'none';
   perfil.style.display = 'none';
 
-  footer_favoritos.style.backgroundColor = "#c7b8cb";
+  footer_favoritos.style.backgroundColor = "#dbbde4";
   footer_maniqui.style.backgroundColor = "#EBDCF0";
   footer_armario.style.backgroundColor = "#EBDCF0";
   footer_esc_ropa.style.backgroundColor = "#EBDCF0";
@@ -39,7 +39,7 @@ const act_pag_maniqui= () => {
   perfil.style.display = 'none';
   
   footer_favoritos.style.backgroundColor ="#EBDCF0";
-  footer_maniqui.style.backgroundColor = "#c7b8cb";
+  footer_maniqui.style.backgroundColor = "#dbbde4";
   footer_armario.style.backgroundColor = "#EBDCF0";
   footer_esc_ropa.style.backgroundColor = "#EBDCF0";
   footer_perfil.style.backgroundColor = "#EBDCF0";
@@ -61,7 +61,7 @@ const act_pag_armario= () => {
 
   footer_favoritos.style.backgroundColor = "#EBDCF0";
   footer_maniqui.style.backgroundColor = "#EBDCF0";
-  footer_armario.style.backgroundColor = "#c7b8cb"
+  footer_armario.style.backgroundColor = "#dbbde4"
   footer_esc_ropa.style.backgroundColor = "#EBDCF0";
   footer_perfil.style.backgroundColor = "#EBDCF0";
 
@@ -79,7 +79,7 @@ const act_pag_esc_ropa= () => {
   footer_favoritos.style.backgroundColor = "#EBDCF0";
   footer_maniqui.style.backgroundColor = "#EBDCF0";
   footer_armario.style.backgroundColor = "#EBDCF0";
-  footer_esc_ropa.style.backgroundColor = "#c7b8cb";
+  footer_esc_ropa.style.backgroundColor = "#dbbde4";
   footer_perfil.style.backgroundColor = "#EBDCF0";
 
   document.dispatchEvent(cambiar_sitio);
@@ -113,7 +113,7 @@ const act_pag_perfil= () => {
   footer_maniqui.style.backgroundColor = "#EBDCF0";
   footer_armario.style.backgroundColor = "#EBDCF0";
   footer_esc_ropa.style.backgroundColor = "#EBDCF0";
-  footer_perfil.style.backgroundColor = "#c7b8cb";
+  footer_perfil.style.backgroundColor = "#dbbde4";
 
   document.dispatchEvent(cambiar_sitio);
   detenerGrabacion();

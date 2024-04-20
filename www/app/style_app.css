@@ -13,6 +13,7 @@ html,body {
 }
 
 h1{
+    position: absolute;
     left:5vw;
 }
 header{
@@ -21,6 +22,9 @@ header{
     height: 8vh;
     width: 100vw;
     position: absolute;
+    background-color: #EBDCF0;
+    color: #333;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .pag_principal{
@@ -40,7 +44,7 @@ footer {
     width: 100vw;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    background-color: #EBDCF0;
+    background-color: #aa91b2;
 }
 footer div{
     display: grid;
@@ -63,8 +67,9 @@ footer div{
     margin: 0;
     position: fixed;
     top: 8vh;
-    width: 100vw;
-    margin-top: 1vh;
+    width: 98vw;
+    margin-top: 2vh;
+    margin-left: 1vw;
     height: 75vh;
     overflow-y: scroll;
 }
@@ -92,14 +97,14 @@ footer div{
 
 /*Estilos para cada producto del carrito*/
 .prod_carrito {
-    width: 94vw; 
+    width: 93vw; 
     height: auto;
     position: relative;
     background-color: #ecd0f7;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 5% 0%;
-    margin-bottom: 3vh;
+    margin-bottom: 2vh;
     color: #333;
     display: grid;
     grid-template-columns: 4fr 9fr;
@@ -148,7 +153,7 @@ footer div{
 /*Estilo del producto abierto*/
 .mostrar_producto {
     top: 8vh;
-    width: 100vw; 
+    width: 98vw; 
     height: 76vh;
     position: fixed;
     background-color: #ceb0da;
@@ -188,14 +193,17 @@ footer div{
     height: 90%;
     position: relative;
     z-index: 3;
-    border: thick double #5e5161;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     border-radius: 5%;
     display: grid;
-    grid-template-rows: 5fr 1fr 1fr;
+    grid-template-rows: 4fr 1fr 1fr;
     background-color: #ecd0f7;
     text-align: center;
 }
 
+.favorito > .seccion_recomendados > .recomendaciones > .recomendacion {
+    background-color: #ffbbd1;
+}
 .imagen_recomendacion{ 
     position:relative;
     max-width: 80%;
@@ -215,6 +223,7 @@ footer div{
     margin: 0;
     position: fixed;
     top: 8vh;
+    margin-top: 2vh;
     width: 100vw;
     height: 75vh;
     overflow-y: auto;
@@ -224,7 +233,7 @@ footer div{
     width: 100vw; 
     height: auto;
     position: relative;
-    background-color: #ef7ea4;
+    background-color: #ed8dad;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 5% 0%;
