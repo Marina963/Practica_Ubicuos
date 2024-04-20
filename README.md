@@ -54,3 +54,7 @@
     - Localizar un prododucto en la tienda.
     - Ordenar por tipo de ropa
     - En el maniqui 3d poder cambiarle la ropa
+
+
+
+# poner que se han quitado las funciones por defecto y los posibles errores

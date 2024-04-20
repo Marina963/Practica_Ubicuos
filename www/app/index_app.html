@@ -18,102 +18,177 @@
 </head>
 
 <body>
-    <header>
-        <h1> Ropa </h1>
-    </header>
-    
-    <div id="favoritos" class="pag_principal">
-        <div id="lista_favs"></div>
-    </div>
-    <div id="maniqui" class="pag_principal">
-        <div id="maniqui_camara"> <img id="camara" src="../images/camara.png" alt="camara"> </div>
-        <div id="div_video_ropa">
-            <video id="video_ropa"  autoplay></video>
-            <img id="ropa" src="../images/camiseta_negra.png" alt="Ropa superpuesta">
-            <div id="camara_maniqui"> <img id="camara" src="../images/maniqui.png" alt="camara"> </div>
-            <div id="lista_maniqui"></div>
+    <div id="guia">
+        <div id="cerrar"> <img id="x" src="../images/x.png" alt="x"></div>
+        <button class="siguiente"> Siguiente </button>
+        <div id = "guia_navegacion" class="info">
+            <h2>Información de la aplicación</h2>
+            <div>
+                <p> La aplicación esta dividida en las siguinetes 5 seciones:</p>
+                <ul id="lista" >
+                    <li>Favoritos</li>
+                    <li>Maniqui</li>
+                    <li>Armario</li>
+                    <li>Escaner</li>
+                    <li>Perfil</li>
+                </ul>
+               <p> Para cambiar entre ellas podrás decir por voz las palabras anterioes o pulsar sobre los iconos que se encuentran en la barra inferior. </p>
+            </div>
+        
 
         </div>
+        <div id = "guia_armario" class="info">
+            <h2>Página Armario</h2>
+            <div>
+                <p>En esta sección se pueden ver todos los articulos añadidos a la cesta, se pueden realizar 4 acciones:  </p>
+                <p>- SELECIONAR UN PRODUCTO: para selcionarlo pulsa sobre un elemento. Cuando este seleccionado se podrá ver las distintas sugerencias si se pulsan se añadiran al carrito. </p>
+                <p>- BORRAR ELEMENTOS: seleciona un producto y coloca el movil boca abajo durante 3 segundos. El movil hará una pequeña vibración al principio y una mayor al final.</p>
+                <p>- MARCAR COMO FAVORITO: seleciona un producto y aguita el movil, el producto cambiará de color.</p>
+                <p>- ORDENAR: di por voz ordernar y los productos favoritos se situarán en la parte sueperior. </p>
+            </div>
+    
+            <div clas="img_footer"> <img class="img_f" src="../images/footer_armario.jpg" alt="armario"> </div>
+            
+        </div>
+        <div id = "guia_scanner" class="info">
+            <h2>Página escaner</h2>
+            <div>
+                <p>En esta sección se puden realizar las siguientes 2 acciones:</p>
+                <p>- AÑADIR PRODUCTOS: se realizará escaneando los distintos códigos de barrar. Para que sea más facil hay una imagen (Resumen produtos) que recoge todas las prendas con sus codigos correspondientes.</p>
+                <p>- INICIAR PAGO: Si se escanea el codigo QR de la pantalla de pago se inicia el pago </p>
+            </div>
+            <div id="img_footer"> <img class="img_f"src="../images/footer_scanner.jpg" alt="scanner"> </div>
+            
+        </div>
+        <div id = "guia_maniqui" class="info">
+            <h2>Página maniquí</h2>
+            <div>
+                <p>En esta sección se puden ver las dos seciones siguientes:</p>
+                <p>- MANIQUI: Cuando se abra esta sección aparecerá un maniquí. Si se pone el movil en vertical y se gira hacia la derecha y hacia la izquierda, el maniqui girará acorde con el movimineto del movil</p>
+                <p>- PROBADOR: Si se dice probador o si se pulsa el icono de la camara que hay al lado del maniquí, aparecerá un probador donde el usaurio podra probarse diferentes prendas. </p>
+            </div>
+            <div id="img_footer"> <img class="img_f" src="../images/footer_maniqui.jpg" alt="scanner"> </div>
+        </div>
+        <div id = "guia_favoritos" class="info">
+            <h2>Página favoritos</h2>
+            <p>En esta sección se encuentra los productos marcados como favoritos</p>
+            <div id="img_footer"> <img class="img_f" src="../images/footer_favoritos.jpg" alt="scanner"> </div>
+        </div>
+        <div id = "guia_perfil" class="info">
+            <h2>Página perfil</h2>
+            <p>En esta sección podrás cambiar la talla en la que por defecto se añaden las prendas.</p>
+            
+            <div id="img_footer"> <img class="img_f" src="../images/footer_perfil.jpg" alt="scanner"> </div>
+        </div>
+        <div id = "guia_pago" class="info">
+            <h2>Pago</h2>
+            <div>
+                <p>Una vez iniciado el pago en la pantalla de cobro habrá un resumen de la compra.</p>
+                <p>A su vez, en el movil, aparecerá un dado. Si se agita el movil el dado girará y se aplicará un descuento a tu compra.</p>
+                <p>Después si se dice pagar o si se pulsa el botón se habrá completado la compra</p>
+            </div>
+            <button id="acceptar"> Aceptar </button>
+        </div>
     </div>
-    <div id="armario" class="pag_principal">    
-        <div id="carrito"></div>
-    </div>
-    <div id="esc_ropa" class="pag_principal">
-        <p>Esperando a que se carge la  camara</p>
-        <video id="video"  autoplay></video>
-        <canvas id="canvas" style="display:none;"></canvas>        
-    </div>
-    <div id="perfil" class="pag_principal">
-        <p>Usuario:</p>
-        <p id="nombre_usuario"></p>
-        <p>Talla preferida:</p>
-        <p id="talla_pref"></p>
-        <button id="boton_XS">XS</button>
-        <button id="boton_S">S</button>
-        <button id="boton_M">M</button>
-        <button id="boton_L">L</button>
-        <button id="boton_XL">XL</button>
-    </div>
-    <div id="dado">
-        <p id="sacude">¡Sacude el movil para tirar el dado y conseguir un descuento!</p>
-        <p id="total"></p>
-        <div class="dice-container">
-            <div class="dice" id="dice" data-face="2">
-                <div class="dice-face" data-face="1">
-                    <span class="dot"></span>
-                </div>
-                <div class="dice-face" data-face="2">
-                    <span class="dot"></span>
-                    <span class="dot"></span>
-                </div>
-                <div class="dice-face" data-face="3">
-                    <span class="dot"></span>
-                    <span class="dot"></span>
-                    <span class="dot"></span>
-                </div>
-                <div class="dice-face" data-face="4">
-                    <span class="dot"></span>
-                    <span class="dot"></span>
-                    <span class="dot"></span>
-                    <span class="dot"></span>
-                </div>
-                <div class="dice-face" data-face="5">
-                    <span class="dot"></span>
-                    <span class="dot"></span>
-                    <span class="dot"></span>
-                    <span class="dot"></span>
-                    <span class="dot"></span>
-                </div>
-                <div class="dice-face" data-face="6">
-                    <span class="dot"></span>
-                    <span class="dot"></span>
-                    <span class="dot"></span>
-                    <span class="dot"></span>
-                    <span class="dot"></span>
-                    <span class="dot"></span>
-                </div>
+    <div id="app">
+        <header>
+            <h1> Ropa </h1>
+        </header>
+        
+        <div id="favoritos" class="pag_principal">
+            <div id="lista_favs"></div>
+        </div>
+        <div id="maniqui" class="pag_principal">
+            <div id="maniqui_camara"> <img id="camara" src="../images/camara.png" alt="camara"> </div>
+            <div id="div_video_ropa">
+                <video id="video_ropa"  autoplay></video>
+                <img id="ropa" src="../images/camiseta_negra.png" alt="Ropa superpuesta">
+                <div id="camara_maniqui"> <img id="camara" src="../images/maniqui.png" alt="camara"> </div>
+                <div id="lista_maniqui"></div>
+
             </div>
         </div>
-        <button id="boton_pago">Pagar</button>
+        <div id="armario" class="pag_principal">    
+            <div id="carrito"></div>
+        </div>
+        <div id="esc_ropa" class="pag_principal">
+            <p>Esperando a que se carge la  camara</p>
+            <video id="video"  autoplay></video>
+            <canvas id="canvas" style="display:none;"></canvas>        
+        </div>
+        <div id="perfil" class="pag_principal">
+            <p>Usuario:</p>
+            <p id="nombre_usuario"></p>
+            <p>Talla preferida:</p>
+            <p id="talla_pref"></p>
+            <button id="boton_XS">XS</button>
+            <button id="boton_S">S</button>
+            <button id="boton_M">M</button>
+            <button id="boton_L">L</button>
+            <button id="boton_XL">XL</button>
+        </div>
+        <div id="dado">
+            <p id="sacude">¡Sacude el movil para tirar el dado y conseguir un descuento!</p>
+            <p id="total"></p>
+            <div class="dice-container">
+                <div class="dice" id="dice" data-face="2">
+                    <div class="dice-face" data-face="1">
+                        <span class="dot"></span>
+                    </div>
+                    <div class="dice-face" data-face="2">
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                    </div>
+                    <div class="dice-face" data-face="3">
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                    </div>
+                    <div class="dice-face" data-face="4">
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                    </div>
+                    <div class="dice-face" data-face="5">
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                    </div>
+                    <div class="dice-face" data-face="6">
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                    </div>
+                </div>
+            </div>
+            <button id="boton_pago">Pagar</button>
+        </div>
+        
+        <footer>
+            <div id="footer_favoritos">
+                <img class="icono" src="../images/corazon.png" alt="icono">
+            </div>
+            <div id="footer_maniqui">
+                <img class="icono" src="../images/maniqui.png" alt="icono">
+            </div>
+            <div id="footer_armario">
+                <img class="icono" src="../images/armario.png" alt="icono">
+            </div>
+            <div id="footer_esc_ropa">
+                <img class="icono" src="../images/scanner.png" scanner.pngalt="icono">
+            </div>
+            <div id="footer_perfil">
+                <img class="icono" src="../images/usuario.png" alt="icono">
+            </div>
+        </footer>
     </div>
 
-    <footer>
-        <div id="footer_favoritos">
-            <img class="icono" src="../images/corazon.png" alt="icono">
-        </div>
-        <div id="footer_maniqui">
-            <img class="icono" src="../images/maniqui.png" alt="icono">
-        </div>
-        <div id="footer_armario">
-            <img class="icono" src="../images/armario.png" alt="icono">
-        </div>
-        <div id="footer_esc_ropa">
-            <img class="icono" src="../images/scanner.png" scanner.pngalt="icono">
-        </div>
-        <div id="footer_perfil">
-            <img class="icono" src="../images/usuario.png" alt="icono">
-        </div>
-    </footer>
     <script src="script_mostrarprod.js"></script>
     <script src="script_perfil.js"></script>
     <script src="shake.js"> </script>
@@ -126,6 +201,7 @@
     <script src="script_elementos_html.js"> </script>
     <script src="script_dado.js"></script>
     <script src="script_voz.js"> </script>
+    <script src="script_guia.js"></script>
     <script src="script_app.js"> </script>
     
 

@@ -11,7 +11,8 @@ socket.on("ACK_CONNECTION", () => {
 
 
 window.addEventListener("load", () =>{
-  act_pag_armario();
+  inicio();
+  //act_pag_armario();
   socket.emit("PEDIR_LISTA");
   socket.emit("PEDIR_PERFIL");
   voz();
