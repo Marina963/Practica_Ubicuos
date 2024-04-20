@@ -23,9 +23,11 @@
 #dado > button{
     margin-top: 10%;
     font-size: 6vh;
-    background-color: #d589f3;
+    background-color: #EBDCF0;
     border-color:#eee0f4;
     display: none;
+    padding: 1vw;
+    border-radius: 1vh;
 }
 
 .dice-container {
@@ -33,12 +35,12 @@
 }
 
 .dice{
-    border-radius: 5px;
+    border-radius: 0.625vh;
     position: relative;
     margin-left: 37%;
     margin-top: 10%;
-    width:100px;
-    height:100px;
+    width:12.5vh;
+    height:12.5vh;
     transform-style: preserve-3d;
     transition: transform 1s;
     
@@ -46,17 +48,17 @@
 
 .dice-face{
     position: absolute;
-    width:100px;
-    height:100px;
+    width:100%;
+    height:100%;
     border: 1px solid #eee0f4;
-    border-radius: 5px;
-    background-color: #d589f3;
+    border-radius: 0.625vh;
+    background-color: #EBDCF0;
     backface-visibility: hidden;
 }
 
 .dot{
-    height: 10px;
-    width: 10px;
+    height: 1.25vh;
+    width: 1.25vh;
     background-color: #fff;
     border-radius: 50% 50%;
     box-shadow: 0px 0px 5px #eee0f4;
@@ -76,11 +78,11 @@
 }
 
 .dice-face[data-face="2"] .dot:nth-child(1){
-    transform: translate(-10px, -25px);
+    transform: translate(-1.25vh, -3.125vh);
 }
 
 .dice-face[data-face="2"] .dot:nth-child(2){
-    transform: translate(10px, 25px);
+    transform: translate(1.25vh, 3.125vh);
 }
 
 .dice-face[data-face="3"]{
@@ -90,10 +92,10 @@
     justify-content: space-evenly;
 }
 .dice-face[data-face="3"] .dot:nth-child(1){
-    transform: translateX(-25px);
+    transform: translateX(-3.125vh);
 }
 .dice-face[data-face="3"] .dot:nth-child(3){
-    transform: translateX(25px);
+    transform: translateX(3.125vh);
 }
 .dice-face[data-face="4"]{
     display: flex;
@@ -102,16 +104,16 @@
     justify-content: space-evenly;
 }
 .dice-face[data-face="4"] .dot:nth-child(1){
-    transform: translate(5px, -25px);
+    transform: translate(0.625vh, -3.125vh);
 }
 .dice-face[data-face="4"] .dot:nth-child(2){
-    transform: translate(40px, -25px)
+    transform: translate(5vh, -3.125vh)
 }
 .dice-face[data-face="4"] .dot:nth-child(3){
-    transform: translate(-40px, 25px)
+    transform: translate(-5vh, 3.125vh)
 }
 .dice-face[data-face="4"] .dot:nth-child(4){
-    transform: translate(-5px, 25px)
+    transform: translate(-0.625vh, 3.125vh)
 }
 
 .dice-face[data-face="5"]{
@@ -121,20 +123,18 @@
     justify-content: space-evenly;
 }
 .dice-face[data-face="5"] .dot:nth-child(1){
-    transform: translate(10px, -25px);
+    transform: translate(1.25vh, -3.125vh);
 }
 .dice-face[data-face="5"] .dot:nth-child(2){
-    transform: translate(45px, -25px)
+    transform: translate(5.625vh, -3.125vh)
 }
-.dice-face[data-face="5"] .dot:nth-child(3){
-    transform: translate(0px, 0px)
-}
+
 .dice-face[data-face="5"] .dot:nth-child(4){
-    transform: translate(-45px, 25px)
+    transform: translate(-5.625vh, 3.125vh)
 }
 
 .dice-face[data-face="5"] .dot:nth-child(5){
-    transform: translate(-10px, 25px)
+    transform: translate(-1.25vh, 3.125vh)
 }
 .dice-face[data-face="6"] {
     display: grid;
@@ -142,7 +142,7 @@
     gap: 2px 15px;
 }
 .dice-face[data-face="6"] .dot {
-    transform: translate(16px, 10px);
+    transform: translate(2vh, 1.25vh);
 }
 
 
