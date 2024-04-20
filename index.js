@@ -147,6 +147,7 @@ socket.on("CAJERO_CONNECTED", () => {
     });
   });
 
+
   socket.on("ACTUALIZA_FAV", (lista)=> {
     fs.writeFile("./www/json/favoritos.json", JSON.stringify(lista), (error) => {
       if(error){
@@ -160,9 +161,17 @@ socket.on("CAJERO_CONNECTED", () => {
         console.log(err);
         return;
       }
-      socketMovil.emit("ELIMINAR_CARRITO_PAGADO",  JSON.parse(data));
+      fs.readFile("./www/json/productos.json", function(err, products) {
+        if(err) {
+          console.log(err);
+          return;
+        }
+      
+      socketMovil.emit("ELIMINAR_CARRITO_PAGADO",  JSON.parse(data), JSON.parse(products));})
     });
   });
+
+ 
 
   socket.on("DISMINUIR_PRODUCTOS", (lista_prod_compr) => {
     fs.readFile("./www/json/productos.json", function(err, lista_prod_disp) {

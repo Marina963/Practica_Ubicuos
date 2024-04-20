@@ -307,7 +307,7 @@ footer div{
     position: absolute;
     bottom: 7vh;
     left: 0;
-    background-color: rgb(204, 164, 224);
+    background-color: #dbbde4;
     height: 17vh;
     width: 100vw;
 
@@ -322,7 +322,7 @@ footer div{
     height: 30vw;
     margin: auto;
     position: relative;
-    background-color: rgb(236, 207, 247);
+    background-color:#EBDCF0;
     border-radius: 30px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     display: grid; 
@@ -344,11 +344,12 @@ footer div{
 }
 
 #perfil > button{
-    background-color: #ecd0f7;
+    background-color: #EBDCF0;
     font-size: 4vh;
     width: 7vh;
-    border-radius: 25%;
+    border-radius: 50%;
     border: none;
+    padding: 2.5vw;
 }
 
 #nombre_usuario{

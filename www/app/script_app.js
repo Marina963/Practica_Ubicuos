@@ -32,10 +32,10 @@ socket.on("RESPUESTA_TODOS", (data, item) => {
   mostrar_recomendaciones(data, item);
 })
 
-socket.on("ELIMINAR_CARRITO_PAGADO", (data) => {
+socket.on("ELIMINAR_CARRITO_PAGADO", (data, products) => {
   let prods = document.querySelectorAll('.prod_carrito');
   prods.forEach(div => div.remove());
-  load(data);
+  load(data,products);
 }); 
 
 socket.on("ACTIVAR_DADO", (precio)=>{
