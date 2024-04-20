@@ -1,6 +1,6 @@
 const maniqui_camara = document.querySelector("#maniqui_camara");
 const camara_maniqui = document.querySelector("#camara_maniqui");
-const video_ropa = document.getElementById('video_ropa');
+let video_ropa = document.getElementById('video_ropa');
 const div_video_ropa = document.getElementById('div_video_ropa');
 const ropa = document.getElementById('ropa');
 let lista_maniqui = document.getElementById('lista_maniqui');
@@ -66,11 +66,13 @@ camara_maniqui.addEventListener("touchend", ()=>{
 //Función que inicia la grabación del probador con la camara frontal
 const iniciar_grabacion_ropa = () => {
     navigator.mediaDevices.getUserMedia({ video:  { facingMode: 'user' }  })
-    .then(function(stream) {
+    .then(stream => {
         video_ropa.srcObject = stream;
         videoStream_ropa = stream;
+        video_ropa.play();
+
     })
-    .catch(function(err) {
+    .catch(err => {
         console.log('Error al acceder a la cámara:', err);
     });
 }
@@ -87,6 +89,7 @@ const detenerGrabacion_ropa = () => {
     
       });
       video_ropa.srcObject = null;
+      videoStream_ropa = null;
     }
 }
 
