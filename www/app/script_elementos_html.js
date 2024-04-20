@@ -85,8 +85,9 @@ const act_pag_esc_ropa= () => {
   document.dispatchEvent(cambiar_sitio);
   detenerGrabacion_ropa();
   quitarModelo();
-  
+  iniciar_grabacion()
   // Se inicia la grbacion y se busca el qr,
+  /*
   iniciar_grabacion()
   .then(valor_qr => {
   if(valor_qr =="pago"){
@@ -95,12 +96,13 @@ const act_pag_esc_ropa= () => {
     add(valor_qr);
 
   }
+  
     act_pag_armario();
   })
   .catch(error => {
     console.error("Error al iniciar la grabación:", error);
   });
-   
+  */
 }
 const act_pag_perfil= () => {
   favoritos.style.display = 'none';

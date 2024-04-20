@@ -250,11 +250,7 @@ footer div{
     width: 100vw;  
 }
 
-#canvas{
-    position: absolute;
-    top: 0;
-    width: 100vw;
-}
+
 
 /*-----------------Estilo del maniquí----------------*/
 #maniqui_camara{

@@ -1,90 +1,28 @@
-let video = document.getElementById('video');
-let canvas = document.getElementById('canvas');
-let context = canvas.getContext('2d', {willReadFrequently: true,});
-let animacion = null;
-let quaggaStarted = false; 
-let videoStream;
-
-const iniciar_grabacion = () => {
-  //Promesa para poder devolver codigo qr
-  return new Promise((resolve, reject) =>{
-    //Se activa la camara frontal
-    navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
-    .then(stream => {
-      videoStream  = stream;
-      video.srcObject = stream;
-      video.play();
-      
-      video.onloadedmetadata = () => {
-        //Inicaliza la api que le los codigos de barras
-        Quagga.init({
-          inputStream: {
-          name: "Live",
-          type: "LiveStream",
-          target:video
-          },
-          decoder: {
-          readers: ["code_128_reader"] 
-          }
-      }, function(err) {
-          if (err) {
-          console.error('Error al iniciar Quagga:', err);
-          return;
-          }
-          Quagga.start();
-          quaggaStarted = true; 
-      });
-        //Se llama a la funcion de escaneo hasta que se encuentre la función
-        animacion  = setInterval(() => detectQRCode(resolve), 100);
-      }
-    })
-    .catch(err => {
-      reject(err);
-     });
-    })
-  
-}
-
-//Función que detecta el qr
-const detectQRCode = (resolve) =>{
-  try{
-    //Se hace una captura y la api detecta si hay un codigo qr
-    context.drawImage(video, 0, 0, canvas.width, canvas.height);
-    let imageData = context.getImageData(0, 0, canvas.width, canvas.height);
-    let code = jsQR(imageData.data, imageData.width, imageData.height, imageData.height, {inversionAttempts: 'dontInvert',});
-    //Si detecta un qr la promesa devuelve el valor del qr,  se para el setInterval y se detine la grabacion
-    if (code) {
-      setInterval(animacion);
-      resolve(code.data);
-      detenerGrabacion();
-    }else {
-      // Si no detecta un QR, intenta detectar un código de barras
-      Quagga.onDetected(function(result) {
-        const code = result.codeResult.code;
-        //console.log('Código de barras detectado:', code);
-        //Quagga.stop();
-        quaggaStarted = false; 
-        setInterval(animacion);
-        resolve(code);
-        detenerGrabacion();
-      });
-  }
-  } catch(error){}
-}
+var lastResult, countResults = 0;
+const html5QrCode = new Html5Qrcode("video");
+const qrCodeSuccessCallback = (decodedText, decodedResult) => {
+  if (decodedText !== lastResult) {
+    ++countResults;
+    lastResult = decodedText;
     
-  
-  
-//Función que apaga la campara si esta encendida
+    console.log(`Scan result ${decodedText}`, decodedResult);
+    if(decodedText =="pago"){
+      socket.emit("LISTA_PAGO");
+    }else{
+      add(decodedText);
+    }
+    detenerGrabacion();
+    act_pag_armario();
+    
+}
+};
+const config = { fps: 10, qrbox: { width: 600, height: 600 } };
+
+const iniciar_grabacion = () => { 
+  html5QrCode.start({ facingMode: "environment" }, config, qrCodeSuccessCallback);
+}
 const detenerGrabacion = () => {
-  if (videoStream) {
-    videoStream.getTracks().forEach(track => {
-      track.stop();
-    });
-    video.srcObject = null;
-  }
-  
-  if (quaggaStarted) {
-    Quagga.stop();
+  if(html5QrCode.isScanning === true){
+    html5QrCode.stop()
   }
 }
-
