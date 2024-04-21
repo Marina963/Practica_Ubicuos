@@ -1,4 +1,4 @@
-# Practica_Ubicuos
+# Practica_Ubicuos Grupo 5 P2
 
 # Integrantes
     - Marina Pérez Barbero - 100472115
