@@ -1,13 +1,16 @@
+/*----------Script que se encarga del reconocimineto de voz----------------------- */
+
+//Inicialización del reconocimiento de voz y de la gramatica
 var SpeechRecognition = window.SpeechRecognition || webkitSpeechRecognition;
 var SpeechGrammarList = window.SpeechGrammarList || webkitSpeechGrammarList;
 
 const recognition = new SpeechRecognition();
 const speechRecognitionList = new SpeechGrammarList();
 
-//Gramatica de reconocimiento de voz
+//Gramática de reconocimiento de voz
 const grammar ="#JSGF V1.0; grammar colors; public <accion> = ordenar | armario | maniqui | perfil | favoritos | escaner| probador | pagar;";
 
-
+//Configuración del reconocimiento de voz
 speechRecognitionList.addFromString(grammar, 1);
 recognition.grammars = speechRecognitionList;
 recognition.continuous = false;
@@ -16,15 +19,16 @@ recognition.interimResults = false;
 recognition.maxAlternatives = 1;
 
 
-//Inicia reconocomiento de voz
+//Función para iniciar el reconocomiento de voz
 const voz = () =>{
   recognition.start();
 } 
 
-//Reconoce las palabras y llama a las funciones corresponidentes
+//Evento que se activa cuando se detecta voz.
 recognition.onresult = function(event) {
   const result = event.results[0][0].transcript.toLowerCase();
 
+  //Dependiendo de la palabra que se detecte se hace una ación diferente
   switch (result) {
     case "ordenar":
       if (armario.style.display === 'block') {
@@ -54,26 +58,29 @@ recognition.onresult = function(event) {
       if(dado.style.display == "block"){
         pagar();
       }
-      
+
     default:
       break;
 
   };
 };
 
-//Funcione para detectar cuando termina de hablar y si termina volver iniciar el reconocimiento de voz
+//Evebto para detectar cuando termina de hablar y detiene el reconocimiento 
 recognition.onspeechend = function() {
   recognition.stop();
 };
 
+//Evento que se activa cuando se termina de hablar, reinicia el reconocimeinto
 recognition.onend = function() {
   recognition.start();
 }
 
+//Evento que se produce cuando no hay coincidencias
 recognition.onnomatch = function() {
   recognition.stop();
 };
 
+//Evento que se produce cuando hay un error
 recognition.onerror = function(event) {
   console.log(`Error occurred in recognition: ${event.error}`);
 };

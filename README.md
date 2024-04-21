@@ -19,10 +19,11 @@
                     Los comandos son los siguientes:
                         - Favoritos: para ver la lista de productos favoritos
                         - Maniqui: para ver un maniqui en 3d
-                        - Cámara: abrirá un probador diguital donde se podrá ver como queda la ropa.
+                        - Probador: abrirá un probador diguital donde se podrá ver como queda la ropa.
                         - Armario: para ver la ropa que tienes selecionada.
                         - Escaner: para añadir los produtos al armario.
                         - Perfil: con la información del usuario.
+                        - Pago:
                         
         - Añadir: se ira a la pestaña de escner y aparecerá la camara frontal donde el usuario esceneara los codigos de barras correspondente a los productos 
                 - 1 es una camiseta negra 
