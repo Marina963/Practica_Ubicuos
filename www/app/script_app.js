@@ -9,35 +9,32 @@ socket.on("ACK_CONNECTION", () => {
   console.log("ack_movil");
 });
 
-
+// Inicio de la aplicacion, comienza a detectar comandos de voz, manda peticiones al servidor, y carga la guía de usuario
 window.addEventListener("load", () =>{
   inicio();
-  //act_pag_armario();
   socket.emit("PEDIR_LISTA");
   socket.emit("PEDIR_PERFIL");
   voz();
 });
 
-// Recibir respuestas del servidor
+// Recibir respuestas del servidor para el load
 socket.on("RESPUESTA_LISTA", (data, products) => {
   load(data, products);
 }); 
 
+// Respuesta de servidor con los datos de un producto a añadir
 socket.on("RESPUESTA_PROD", (data) => {
   new_product(data);
 }); 
 
-socket.on("RESPUESTA_TODOS", (data, item) => {
-  console.log(data, item);
-  mostrar_recomendaciones(data, item);
-})
-
+// Mensaje del servidor después de pagar para eliminar todos los productos del carrito.
 socket.on("ELIMINAR_CARRITO_PAGADO", (data, products) => {
   let prods = document.querySelectorAll('.prod_carrito');
   prods.forEach(div => div.remove());
   load(data,products);
 }); 
 
+// 
 socket.on("ACTIVAR_DADO", (precio)=>{
   let total = document.getElementById('total');
   total.innerHTML = precio;
@@ -46,6 +43,7 @@ socket.on("ACTIVAR_DADO", (precio)=>{
   sensorDado.start();
 });
 
+//
 socket.on("RETORNO_DADO", ()=>{
   let dado = document.getElementById('dado');
   dado.style.display = "none";
@@ -56,6 +54,7 @@ socket.on("RETORNO_DADO", ()=>{
   sensorDado.stop();
 });
 
+// Actualiza o crea el perfil con los datos recibidos del servidor. 
 socket.on("RESPUESTA_PERFIL", (perfil)=>{
   let nombre_usuario = document.getElementById('nombre_usuario');
   nombre_usuario.innerHTML = perfil[0]["usuario"];
