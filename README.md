@@ -8,54 +8,59 @@
 
 # Ejecución 
     1º - En en terrminal escribir :  node .\index.js
-    2º - En eun navegador de un ordenador poner la url: http://localhost:3000
-    3º - Escaner con el movil el QR que vienen viene en el ordenar para que se carge la aplicación. 
-        Esta se abrira en la paguina del armario inicial mente estará vacia
+    2º - En un navegador de un ordenador escribir la url: http://localhost:3000
+    3º - Escaner con el movil el QR que aparecerá en la pantalla del ordenar para que se carge la aplicación. 
+        Esta se abrirá con una guía inicial y posteriormente en la página del armario o carrito. 
 
 # Funciones implentadas
-
     ## Funiones basicas 
-        - Navegación: para nevegar por la app se puede haver por voz u pulsando los btos que hay en el footer. 
-                    Los comandos son los siguientes:
+        - Navegación: para nevegar por la app se pueden usar comandos de voz o pulsar los botones que hay en el footer. 
+                    Los comandos de voz son los siguientes:
                         - Favoritos: para ver la lista de productos favoritos
                         - Maniqui: para ver un maniqui en 3d
-                        - Probador: abrirá un probador diguital donde se podrá ver como queda la ropa.
+                        - Probador: abrirá un probador digital donde se podrá ver como queda la ropa.
                         - Armario: para ver la ropa que tienes selecionada.
                         - Escaner: para añadir los produtos al armario.
-                        - Perfil: con la información del usuario.
-                        - Pago:
+                        - Perfil: seccion con la información del usuario.
+                        - Pago: una vez lanzado el dado desde el dispositivo confirma el pago y termina la transacción
                         
-        - Añadir: se ira a la pestaña de escner y aparecerá la camara frontal donde el usuario esceneara los codigos de barras correspondente a los productos 
-                - 1 es una camiseta negra 
-                - 2 pantalones
-                - 3 blusa
-        - Borrar: para borrar un producto habrá que ir a la pestaña del amrio y slecionar un producto para borrarlo se pondrá el movil voca abajo y se esperará 3s
-                cuenso termine el dispositivo vibrará. Cuando termine la vibración el usuario podrá dar la vuelta al dispositivo.
-        - Favorito:  se tendrá que ir tambien al armario y selecionar un producto, depues se agitara el movil y el produto cambiará de color. Además para verlo de 
-                    una manera más visual se ñadiria a la pestala de favoritos.
-        - Ordenar: se relizará por voz y habra que ir a la pestaña del armario y decir "ordenar" y los produtos se ordenar poniendose primero los favoritos. 
-        - Pago: para pagar se tendrá que ir a la paguina de escaner y escanear el cogigo QR después en la pantalla se hará un resumen de los produtos selcionados. 
-                A su vez en el movil aparcerá un dado que se agiatara y se aplicaraá un descuento el precio. No se  ha podido haver NFC debido a que no hemos encontardo
-                API que pemitan desarrolllo y hemos decidido haclo escaneando un QR.
+        - Añadir: en la pestaña de escaner se pedirá acceso a la cámara trasera, con la que el usuario esceneará los codigos de barras correspondente a los productos que se encontrarán en las etiquetas. Estos códigos contienen un número que corresponde a:
+                - 1: camiseta negra 
+                - 2: pantalones
+                - 3: blusa
+
+        - Borrar: para borrar un producto habrá que ir a la pestaña del armario y slecionar un producto, se pondrá el movil boca abajo y se esperarán 3s. Cuando termine el dispositivo vibrará y cuando termine la vibración el usuario podrá dar la vuelta al dispositivo.
+
+        - Favorito:  se tendrá que ir tambien al armario y selecionar un producto, depues se agitara el movil y el produto cambiará de color. Además para verlo de una manera más visual se ñadiria a la pestala de favoritos.
+
+        - Ordenar: en la pestaña del armario al utilizar el comando de voz "ordenar" los produtos se ordenarán colocando primero aquellos marcados como favoritos, visualizandolos rápidamente. 
+
+        - Pago: para pagar se tendrá que ir a la pagina de escáner y escanear el cogigo QR que habrá aparecido en la pantalla del ordenador tras la conexión del dispositivo móvil. Tras escanear aparecerá en la pantalla del ordenador un resumen de los produtos selccionados. A su vez en el movil aparecerá un dado que el usuario podrá lanzar agitando el móvil así se le aplicará un descuento al precio. No se ha podido utilizar el NFC planteado en el diseño debido a que no hemos encontardo API que pemitan su uso por problemas de permisos de los dispositivos, y así se ha sustituido por el escaneo de un QR.
     
 
     ## Funiones extras
-        - Probador: aqui hay dos funionalidades para verlas hay que ir a la pestalla de maniquí. Primero nos encontraremos con un prototipo de maniqui 3D que si se pone el 
-                    movil vertil y se mueve el movil hacia la derecha y la izq el maniqui guirara con el movimiento. Depués si decimos u palsamos la cmara se ira al probador 
-                    diguital donde aparecen una serie de prendas que el usuario se podrá probar. Para su uso hay que tner en cuenta que en el disño de la tienda habra unos 
-                    soportes para dejar el movil.
-        - Sugerencias: En la pestalla de armario si se pulsa un produto aparecera una sere de prendas que son sugerencias de produtos parecidos. Si se pulsan se añaden a la
-                       cesta.
-        - Perfil: en esta pestala el usuario podra introducir la talla que quiere que se le añada por defecto en la ropa si no lo hace la talla por defecto será la s.
-        - Descuentos: COmo se ha emncionado después de escanear el Qr aparecera un dado en el movil que se agitar y se produciraun descuento.
+        - Probador: Cuenta de dos funionalidades que pueden verse en la pestaña maniquí encontrando al abrila un prototipo de maniqui 3D. Si el usuario coloca su movil en vertical y lo mueve hacia los lados el modelo girará con el movimiento. En esta pantalla con el comando de voz "probador" o al pulsar el icono de cámara en la esquina superior derecha se abrirá una nueva pantalla en la que aparece una cámara y una serie de prendas. Este prototipo de probador permitirá al usuario poder cambiar entre prendas que aparezcan en la pantalla, y colocar el dispositivo en un soporte presente en la tienda para poder utilizar la camara como espejo en el que probarse esta ropa. 
+
+        - Sugerencias: En la pestaña de armario si se pulsa un produto este se abrirá y aparecerá una sere de recomendaciones de productos parecidos, elegidas por las etiquetas de estilo añadidas a todos los productos. Si se pulsan cualquiera de estas recomendaciones el producto será añadido a la cesta. 
+
+        - Perfil: en esta pestala el usuario podrá introducir la talla que quiere que se le añada por defecto en la ropa. Se puede cambiar esta en cualquier momento, y en caso de no ser añadida por defecto se utilizará una S. En un futuro se puede añadir un inicio de sesión para complejizar la personalización del perfil.
+        
+        - Descuentos: Después de iniciar el proceso de pago en el dispositivo móvil aparece un dado que se puede lanzar para conseguir descuentos en la compra. 
 
 
 
-# Funciones no implementadas
-    - Localizar un prododucto en la tienda.
-    - Ordenar por tipo de ropa
-    - En el maniqui 3d poder cambiarle la ropa
+# Funciones no implementadas planteadas en el diseño
+    - Localizar un prododucto en la tienda, por problemas con la exactitud de los sensores de geolocalización. 
+    - Ordenar por el listado por tipo de ropa, y el estilo de la lista como armario.
+    - Poder cambiar la ropa del maniquí 3d, por la falta de librerías que permitiesen esta funcionalidad con el conociemiento actual y tiempo disponible del grupo. 
+    - En el pago se sustituyó el nfc por un código qr por los problemas descritos anteriormente, y para evistar colisiones con los códigos QR de los productos estos se han cambiado a códigos de barras
 
 
 
-# poner que se han quitado las funciones por defecto y los posibles errores
+# Posibles errores y como se ha realizado el control para evitar en la medida de lo posible
+Aunque se ha añadido control de errores para evitar todos los casos planteados en esta sección, por el funcionamiento de las distintas APIS sigue siendo posible que ocurra alguno de ellos. Estos errores tratan de:
+    - Mediciones smultaneas de los sensores que no pueden ser detectadas y que pueden provocar que se añada o marque como favorito un producto más de una vez. Se han añadido comprobaciones antes de estas acciones para evitar que se pueda añadir o marcar un producto más de una vez si se consigue llegar a esa parte del código, ocurrencia imposible con funcionamiento normal. 
+    - Errores en el uso de las cámaras de manera ocasional, debido al funcionamiento interno de estas. Se han usado APIs distintas para cada funcionalidad para evitar el mayor número de colisiones y se controla que las cámaras empiecen y paren en los momentos adecuados, pero existen ocasiones en las que existe un tiempo de respuesta superior a lo habitual.
+    - El modelo 3d puede provocar ralentización de la aplicación en ciertas ocasiones por el peso que este supone. 
+
+Para evitar errores accidentales por interacción del usuario con la pantalla se han desactivado las funciones por defecto del navegador, lo que ocasiona problemas como no poder recargar la página con un deslice hacia abajo. 
