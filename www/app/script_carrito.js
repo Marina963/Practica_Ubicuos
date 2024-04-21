@@ -208,7 +208,9 @@ const marcar_favorito = (elem_div) => {
 
 
 /** Añade a los productos del carrito los eventlistener correspondientes para que se puedan abrir e
- * interaccionar con ellos. Al presionar un elemento se cambiará el estilo para que se muestre toda la
+ * interaccionar con ellos. 
+ * 
+ * Al presionar un elemento se cambiará el estilo para que se muestre toda la
  * información de este en pantalla completa, y se añadirá la sección de recomendados correspondiente. Además, 
  * los sensores correspondientes empezarán a realizar mediciones para poder marcar como favorito o eliminar un 
  * producto. Al cerrar el producto todo esto parará y se volverá al estado anterior. 

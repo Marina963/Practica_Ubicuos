@@ -73,18 +73,18 @@ footer div{
     height: 75vh;
     overflow-y: scroll;
 }
+
+/*Esto crea un scroller para poder navegar la lista en caso de ser necesario*/
 #armario > ::-webkit-scrollbar {
     width: 4vw;
  }
 
-/* Track */
 ::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
     -webkit-border-radius: 5px;
     border-radius: 5px;
 }
  
-/* Handle */
 ::-webkit-scrollbar-thumb {
     -webkit-border-radius: 5px;
     border-radius: 5px;
@@ -201,9 +201,6 @@ footer div{
     text-align: center;
 }
 
-.favorito > .seccion_recomendados > .recomendaciones > .recomendacion {
-    background-color: #ffbbd1;
-}
 .imagen_recomendacion{ 
     position:relative;
     max-width: 80%;
@@ -241,6 +238,10 @@ footer div{
     color: #333;
     display: grid;
     grid-template-columns: 4fr 9fr;
+}
+
+.favorito > .seccion_recomendados > .recomendaciones > .recomendacion {
+    background-color: #ffbbd1;
 }
 
 /*----------------Estilo del escaner-----------------*/
