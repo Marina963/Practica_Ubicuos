@@ -5,7 +5,12 @@ const sacude = document.getElementById('sacude');
 const options_dado = { threshold: 5};
 var tiempo = 0;
 let total;
-
+/** Funcion que simula el rodar el dado. Calcula el resultado aleatorio y dependiendo de esto
+* dura más o menos la animación para que termine en la cara correcta. Cuando ha terminado, cambia 
+* el texto al de descuento, muestra el boton de pago y manda el nuevo valor con un emit al servidor.
+*
+* @param total precio de la compra antes del descuento
+*/
 const rollDice = (total) =>{
     if(!dice.classList.contains('rolling'))
         dice.classList.add('rolling');
@@ -43,6 +48,7 @@ const rollDice = (total) =>{
     }, tiempo)
 }
 
+// Funcion de pago, avisa al servidor y resetea la pantalla de dado y la oculta
 const pagar = () =>{
     socket.emit("PAGAR");
     navigator.vibrate(1000);
@@ -50,15 +56,20 @@ const pagar = () =>{
     sacude.innerHTML = "¡Sacude el movil para tirar el dado y conseguir un descuento!";
     boton_pago.style.display = "none";
 }
+// Botón de pago
 boton_pago.addEventListener('click', function(e){
     e.preventDefault();
     pagar();
 })
 
+/* Funcion que detecta cuando se sacude el movil para tirar el dado, utiliza la api de acelerometro
+* y comprueba el desplazamiento del movil. Cuando detecta una sacudida inicia la funcion de rodar dado 
+* y detiene el sensor.
+*/
 sensorDado.addEventListener("reading", () => {
-    const deltaX = Math.abs(lastX - sensorAcc.x);
-    const deltaY = Math.abs(lastY - sensorAcc.y);
-    const deltaZ = Math.abs(lastZ - sensorAcc.z);
+    const deltaX = Math.abs(lastX - sensorDado.x);
+    const deltaY = Math.abs(lastY - sensorDado.y);
+    const deltaZ = Math.abs(lastZ - sensorDado.z);
     if ( ((deltaX > options.threshold) && (deltaY > options.threshold)) ||
         ((deltaX > options.threshold) && (deltaZ > options.threshold)) ||
         ((deltaY > options.threshold) && (deltaZ > options.threshold)) ) {

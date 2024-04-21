@@ -1,3 +1,4 @@
+/*--------------------estilo del cajero---------------------*/
 body {
     height: 100%;
     width: 100%;
@@ -41,7 +42,7 @@ body {
   
   .prod_pago {
     font-size: 5vh;
-    background-color: #EBDCF0;
+    background-color: #ecd0f7;
     border-radius: 10px;
     width: 80vw;
     margin-left: 10vw;

@@ -4,6 +4,8 @@ let cont = 0;
 let item;
 let id = "";
 
+/* Función que detecta si el movil está boca abajo. Cuando lo detecta por primera vez hace una 
+vibración corta y cuando se mantiene 3 segundos vibra durante un segundo, elimina el objeto y para el sensor*/
 sensorABS.addEventListener("reading", () => {
   posicion = sensorABS.quaternion;
   if (posicion[3] <= 0.1 && posicion[2] <= 0.1){
@@ -25,6 +27,7 @@ sensorABS.addEventListener("reading", () => {
   }
 });
 
+//Función de error del sensor
 sensorABS.addEventListener("error", (error) => {
   if (event.error.name === "NotReadableError") {
     console.log("Sensor is not available.");

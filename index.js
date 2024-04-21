@@ -46,7 +46,7 @@ socket.on("CAJERO_CONNECTED", () => {
     });
   });
 
-  // Peticion de los datos del perfil
+  // Recibe peticion del cliente de los datos del perfil
   socket.on("PEDIR_PERFIL", () =>{
     fs.readFile("./www/json/perfil.json", function(err, perfil) {
       if(err) {
@@ -112,22 +112,22 @@ socket.on("CAJERO_CONNECTED", () => {
   });
 
   /*------------------Comunicación del servidor con el cajero y dispositivo para interaccion de pago y dado------------------ */
-  // Envia el precio total al móvil para que realice el descuento
+  // Envia el precio total al móvil para que realice el descuento y active el dado
   socket.on("MANDAR_TOTAL", (precio) =>{
     socketMovil.emit("ACTIVAR_DADO", precio);
   });
 
-  // Recibe el precio descontado del movil y de lo manda al cajero
+  // Recibe el precio descontado del movil y se lo manda al cajero
   socket.on("NUEVO_TOTAL", (total) =>{
     socketCajero.emit("TOTAL_CAJERO", total);
   });
 
-  // 
+  // Recibe mensaje del cliente ha pagado y lo manda al cajero para que termine la transacción
   socket.on("PAGAR", () =>{
     socketCajero.emit("MENSAJE_PAGO");
   });
 
-  //
+  // Recibe mensaje del cajero de que se ha pulsado"ir atrás" y avisa al cliente para que desactive la pantalla del dado
   socket.on("RETORNO", ()=>{
     socketMovil.emit("RETORNO_DADO");
   });

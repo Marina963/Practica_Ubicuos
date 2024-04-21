@@ -34,7 +34,7 @@ socket.on("ELIMINAR_CARRITO_PAGADO", (data, products) => {
   load(data,products);
 }); 
 
-// 
+// Activa la pantalla del dado y el sensor. Guarda el total de la compra para que se pueda acceder a ello y aplicar el descuento después
 socket.on("ACTIVAR_DADO", (precio)=>{
   let total = document.getElementById('total');
   total.innerHTML = precio;
@@ -43,7 +43,7 @@ socket.on("ACTIVAR_DADO", (precio)=>{
   sensorDado.start();
 });
 
-//
+// Mensaje del servidor cuando se presiona "ir atrás" en el cajero, oculta el dado volviendo a la pagina principal
 socket.on("RETORNO_DADO", ()=>{
   let dado = document.getElementById('dado');
   dado.style.display = "none";

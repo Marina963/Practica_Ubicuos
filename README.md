@@ -28,10 +28,11 @@
                 - 1: camiseta negra 
                 - 2: pantalones
                 - 3: blusa
+            Para facilitar la comprobación de esto se ha creado una imagen con todos los códigos en la carpeta codigo_barras, denominada resumen productos. 
 
-        - Borrar: para borrar un producto habrá que ir a la pestaña del armario y slecionar un producto, se pondrá el movil boca abajo y se esperarán 3s. Cuando termine el dispositivo vibrará y cuando termine la vibración el usuario podrá dar la vuelta al dispositivo.
+        - Borrar: para borrar un producto habrá que ir a la pestaña del armario y slecionar un producto, se pondrá el movil boca abajo y se esperarán 3s. Cuando detecta que está boca abajo el dispositivo realiziará una vibración corta y cuando se mantenga el tiempo suficiente en la posicion, vibrará más tiempo, borrará el producto y el usuario podrá dar la vuelta al dispositivo.
 
-        - Favorito:  se tendrá que ir tambien al armario y selecionar un producto, depues se agitara el movil y el produto cambiará de color. Además para verlo de una manera más visual se ñadiria a la pestala de favoritos.
+        - Favorito:  se tendrá que ir tambien al armario y selecionar un producto, depues se agitara el movil y el produto cambiará de color. Además para verlo de una manera más visual se añadiria a la pestala de favoritos.
 
         - Ordenar: en la pestaña del armario al utilizar el comando de voz "ordenar" los produtos se ordenarán colocando primero aquellos marcados como favoritos, visualizandolos rápidamente. 
 
@@ -63,4 +64,5 @@ Aunque se ha añadido control de errores para evitar todos los casos planteados 
     - Errores en el uso de las cámaras de manera ocasional, debido al funcionamiento interno de estas. Se han usado APIs distintas para cada funcionalidad para evitar el mayor número de colisiones y se controla que las cámaras empiecen y paren en los momentos adecuados, pero existen ocasiones en las que existe un tiempo de respuesta superior a lo habitual.
     - El modelo 3d puede provocar ralentización de la aplicación en ciertas ocasiones por el peso que este supone. 
 
+Si ocurrieran cualquiera de estos problemas, recargar la pagina.
 Para evitar errores accidentales por interacción del usuario con la pantalla se han desactivado las funciones por defecto del navegador, lo que ocasiona problemas como no poder recargar la página con un deslice hacia abajo. 

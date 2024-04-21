@@ -23,7 +23,7 @@
 #dado > button{
     margin-top: 10%;
     font-size: 6vh;
-    background-color: #EBDCF0;
+    background-color: #ecd0f7;
     border-color:#eee0f4;
     display: none;
     padding: 1vw;
@@ -34,6 +34,7 @@
     background-color: #fff;
 }
 
+/* Dado, preserve-3d hace que sea 3d*/
 .dice{
     border-radius: 0.625vh;
     position: relative;
@@ -52,7 +53,7 @@
     height:100%;
     border: 1px solid #eee0f4;
     border-radius: 0.625vh;
-    background-color: #EBDCF0;
+    background-color: #ecd0f7;
     backface-visibility: hidden;
 }
 
@@ -64,8 +65,7 @@
     box-shadow: 0px 0px 5px #eee0f4;
 }
 
-/* Colocacion puntos */
-
+/* Colocacion de los puntos en cada cara */
 .dice-face[data-face="1"]{
     display: flex;
     align-items: center;
@@ -146,8 +146,7 @@
 }
 
 
-/* Caras dado */
-
+/* Transformacion de posicion de las caras que convierte al dado a 3D */
 .dice-face[data-face="1"] {
     transform: translateZ(3.1em); 
 }
@@ -172,8 +171,8 @@ transform: rotateX(-90deg) translateZ(3.1em);
 transform: rotateY(-180deg) translateZ(3.1em); 
 }
 
-/*Animacion del dado*/
-
+/*Animacion del dado, realizada de manera que pase por cada cara la menos una 
+*vez para que la detención se pueda hacer en la cara correspondiente*/
 .dice.rolling{
     animation:roll 1s ease-in-out infinite
 }
@@ -201,7 +200,9 @@ transform: rotateY(-180deg) translateZ(3.1em);
     }
 }
 
-/*Cara final del dado*/
+/* Encargado de definir la posicion del dado cuando no se está moviendo. 
+* Esto sirve para definir que cara se muestra.
+ */
 .dice[data-face="1"]{
     transform: rotateX(0deg) rotateZ(0deg);
 }

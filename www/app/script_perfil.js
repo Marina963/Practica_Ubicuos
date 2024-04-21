@@ -5,7 +5,7 @@ const boton_l = document.getElementById('boton_L');
 const boton_xl = document.getElementById('boton_XL');
 const talla_pref = document.getElementById('talla_pref');
 var talla;
-
+//botones que cambian la talla preferida, mandan un mensaje al servidor para que se cambie en el json
 boton_xs.addEventListener('click', function(e){
     e.preventDefault();
     talla = "XS";
